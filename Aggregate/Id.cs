@@ -1,6 +1,6 @@
 ﻿namespace Aggregate;
 
-public record Id<T>
+public class Id<T>
 {
     private T DbId { get; }
 
