@@ -2,7 +2,7 @@
 
 public class Id<T>
 {
-    private T DbId { get; }
+    public T DbId { get; }
 
     public Id(T dbId)
     {
