@@ -1,4 +1,4 @@
-namespace DDDFramework.IntegrationTests;
+namespace DDDFramework.Integration.test;
 
 public class UnitTest1
 {
