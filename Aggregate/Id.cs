@@ -1,6 +1,6 @@
 ﻿namespace Aggregate;
 
-public class Id<T>
+public class Id<T> :ValueObject
 {
     public T DbId { get; }
 

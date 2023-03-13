@@ -1,6 +1,5 @@
 ﻿namespace Aggregate;
 
-public class AggregateRoot<T> : IAggregateRoot<T> 
+public class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
 {
-    public Id<T> Id { get; set; }
 }

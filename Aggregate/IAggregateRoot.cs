@@ -1,6 +1,6 @@
 ﻿namespace Aggregate;
 
-public interface IAggregateRoot<T> 
+public interface IAggregateRoot
 {
    
 }
