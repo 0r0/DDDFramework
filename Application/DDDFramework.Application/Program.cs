@@ -34,7 +34,7 @@ app.Run();
 void AddingConfig(WebApplicationBuilder webApplicationBuilder)
 {
     webApplicationBuilder.Host.ConfigureServices(s=>s.AddSingleton(webApplicationBuilder))
-        .ConfigureAppConfiguration(ic => ic.AddJsonFile(Path.Combine("configuration",
+        .ConfigureAppConfiguration(ic => ic.AddJsonFile(Path.Combine("",
             "configuration.json")));
 
 }
