@@ -2,7 +2,8 @@
 
 public abstract class Entity<TKey>
 {
-    public TKey Id { get;  set; }
+    public TKey Id { get; set; }
+
     public override bool Equals(object? obj)
     {
         if (obj is null) return false;
@@ -14,12 +15,12 @@ public abstract class Entity<TKey>
     private bool SameAsIdentity(Entity<TKey>? entity)
     {
         if (entity is null) return false;
-            
-        return  entity.Id != null && entity.Id.Equals(Id);
+
+        return entity.Id != null && entity.Id.Equals(Id);
     }
 
     public override int GetHashCode()
     {
-         return Id.GetHashCode();
+        return Id.GetHashCode();
     }
 }
