@@ -1,4 +1,21 @@
 {
-  "ReRoutes": [],
-  "GlobalConfiguration": {}
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/weatherforecast/hi",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7177
+        }
+      ],
+      "UpstreamPathTemplate": "/weatherforecast",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:7177"
+  }
 }
