@@ -1,0 +1,72 @@
+
+version: "1"
+services:
+  eventstore.db:
+    image: eventstore/eventstore:20.10.5-bionic
+    container_name: eventstoreForDDD
+    environment:
+      - EVENTSTORE_CLUSTER_SIZE=1
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+      - EVENTSTORE_EXT_TCP_PORT=1113
+      - EVENTSTORE_HTTP_PORT=2113
+      - EVENTSTORE_INSECURE=true
+      - EVENTSTORE_ENABLE_EXTERNAL_TCP=true
+      - EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP=true
+    ports:
+      - "1112:1112"
+      - "2113:2113"
+
+
+  mongodb:
+    image : davybello/mongo-replica-set:4.4.8
+    container_name: mongodbforDDD
+    ports:
+      - 27017:27017
+      - 27018:27018
+      - 27019:27019
+
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_USERNAME=guest
+
+
+  neo4j:
+    image: neo4j:4.4.4-enterprise
+    hostname: neo4
+    container_name: neo4ForDDD
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/Mehdi
+      NEO4J_dbms_logs_debug_level: DEBUG
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+
+  redis:
+    container_name: redisForDDD
+    image: redis:7.0.4-alpine
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+
+  neo4j-job:
+    image: neo4j
+    command: |
+      until cypher-shell -u neo4j -p Mehdi -a neo4j "SHOW DATABASES;" ; 
+      do sleep 1 ;
+      done;
+      cypher-shell -u neo4j -p Mehdi -a neo4j-neo4j "CREATE DATABASE hrm"; cypher-shell -u neo4j -p Zino123 -a neo4j-neo4j "CREATE DATABASE party;"; cypher-shell -u neo4j -p Zino123 -a neo4j-neo4j "CREATE DATABASE iam;";
+    depends_on:
+      - neo4j

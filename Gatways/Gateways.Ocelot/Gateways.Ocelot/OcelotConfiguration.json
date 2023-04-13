@@ -1,0 +1,21 @@
+﻿{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/love",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7177
+        }
+      ],
+      "DownstreamPathTemplate": "/api/love"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:800"
+  }
+}
