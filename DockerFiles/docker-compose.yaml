@@ -60,9 +60,20 @@ services:
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
     ports:
       - '6379:6379'
-
+  dddframework.application:
+    container_name: dddframework.application-api
+    image: ${DOCKER_REGISTRY-}dddframework.application
+    build:
+      context: .
+      dockerfile: DDDFramework.Application/Dockerfile
+    networks:
+      - backend
+#    environment:
+#      - DB_HOST=customerdb
+#      - DB_NAME=dms_customer
+#      - DB_SA_PASSWORD=password@12345#
   neo4j-job:
-    image: neo4j
+    image: neo4j:4.4.4-enterprise
     command: |
       until cypher-shell -u neo4j -p Mehdi -a neo4j "SHOW DATABASES;" ; 
       do sleep 1 ;
@@ -70,3 +81,8 @@ services:
       cypher-shell -u neo4j -p Mehdi -a neo4j-neo4j "CREATE DATABASE hrm"; cypher-shell -u neo4j -p Zino123 -a neo4j-neo4j "CREATE DATABASE party;"; cypher-shell -u neo4j -p Zino123 -a neo4j-neo4j "CREATE DATABASE iam;";
     depends_on:
       - neo4j
+    
+networks:
+  backend:
+    external:
+      name: "backend"
