@@ -62,7 +62,7 @@ services:
       - '6379:6379'
   dddframework.application:
     container_name: dddframework.application-api
-    image: ${DOCKER_REGISTRY-}dddframework.application
+    image: dddframework.application
     build:
       context: .
       dockerfile: DDDFramework.Application/Dockerfile
