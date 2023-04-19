@@ -21,7 +21,7 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
         _uncommitedEvent.Add(@event);
     }
 
-    public virtual void Apply(dynamic @event)
+    public virtual void RemoveEvent(DomainEvent @event)
     {
         if (@event is null) throw new ArgumentNullException($"domain event can  not be null=>{nameof(@event)}");
 

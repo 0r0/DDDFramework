@@ -29,5 +29,29 @@ public class AggregateRootTest
     }
     
    // unit test for remove _uncommited event;
+   [Fact]
+   public void AggregateRoot_can_remove_unCommitedEvent()
+   {
+       var orderCreatedDomainEvent = new OrderCreated()
+       {
+           Title = "coal for m mine",
+           Version = 1,
+           EventId = Guid.NewGuid(),
+           OrderNumber = 100
+       };
+       var orderCreatedDomainEvent2 = new OrderCreated()
+       {
+           Title = "brilliant",
+           Version = 1,
+           EventId = Guid.NewGuid(),
+           OrderNumber = 20
+       };
+       var aggregate = new AggregateRootImplementation();
+       aggregate.AddEvent(orderCreatedDomainEvent);
+       aggregate.AddEvent(orderCreatedDomainEvent2);
+       aggregate.RemoveEvent(orderCreatedDomainEvent);
+       Assert.Equal(aggregate._uncommitedEvent.Count,1);
+       Assert.False(aggregate._uncommitedEvent.Contains(orderCreatedDomainEvent));
+   }
     
 }
