@@ -1,4 +1,6 @@
-﻿namespace DDDFramework.Tests;
+﻿using Aggregate;
+
+namespace DDDFramework.Tests;
 
 public class AggregateRootTest
 {
@@ -18,11 +20,11 @@ public class AggregateRootTest
         var orderCreatedDomainEvent = new OrderCreated()
         {
             Title = "coal for m mine",
-            Version = 1,
-            EventId = Guid.NewGuid(),
+            // Version = 1,
+            // EventId = Guid.NewGuid(),
             OrderNumber = 100
         };
-        
+
         var aggregate = new AggregateRootImplementation();
         aggregate.AddEvent(orderCreatedDomainEvent);
         var @event = aggregate._uncommitedEvent.First();
@@ -36,14 +38,14 @@ public class AggregateRootTest
         var orderCreatedDomainEvent = new OrderCreated()
         {
             Title = "coal for m mine",
-            Version = 1,
-            EventId = Guid.NewGuid(),
+            // Version = 1,
+            // EventId = Guid.NewGuid(),
             OrderNumber = 100
         };
         var orderCreatedDomainEvent2 = new OrderCreated()
         {
-            Version = 1,
-            EventId = Guid.NewGuid(),
+            // Version = 1,
+            // EventId = Guid.NewGuid(),
         };
         var aggregate = new AggregateRootImplementation();
         aggregate.AddEvent(orderCreatedDomainEvent);
@@ -56,6 +58,18 @@ public class AggregateRootTest
     [Fact]
     public void AggregateRoot_can_apply_domainEvent_to_domain()
     {
-        
+        var orderCreatedEvent = new OrderCreated()
+        {
+            Title = "Ali",
+            OrderNumber = 11,
+        };
+    }
+
+    [Fact]
+    public void domian_event_set_automatically_eventId_and_version()
+    {
+        var domainEvent = new DomainEvent();
+        Assert.True(domainEvent.EventId != Guid.Empty);
+        Assert.True(domainEvent.Version > 0);
     }
 }

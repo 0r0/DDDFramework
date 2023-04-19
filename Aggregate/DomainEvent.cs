@@ -2,9 +2,16 @@
 
 public class DomainEvent :IDomainEvent
 {
-    public Guid EventId { get; set; }
-    public long Version { get; set; }
+   
+
+    public Guid EventId => Guid.NewGuid();
+
+    public long Version => 1;
+
+
     public DateTime PublishTime =>DateTime.Now;
+    
+    
     
     
 }
