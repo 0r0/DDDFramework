@@ -13,4 +13,12 @@ public class IdTest
         var id = new Id<Guid>(guid);
         id.DbId.Should().Be(guid);
     }
+
+    [Fact]
+    private void Id_can_be_set_For_aggregateRoot()
+    {
+        var orderAggregate = new Order();
+        orderAggregate.Id = new OrderId(Guid.Empty);
+        Assert.Equal(Guid.Empty, orderAggregate.Id.DbId);
+    }
 }
