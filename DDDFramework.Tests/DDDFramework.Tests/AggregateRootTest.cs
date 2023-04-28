@@ -1,4 +1,5 @@
 ﻿using Aggregate;
+using DDDFramework.Domain.Order;
 
 namespace DDDFramework.Tests;
 
@@ -20,8 +21,6 @@ public class AggregateRootTest
         var orderCreatedDomainEvent = new OrderCreated()
         {
             Title = "coal for m mine",
-            // Version = 1,
-            // EventId = Guid.NewGuid(),
             OrderNumber = 100
         };
 
@@ -38,14 +37,12 @@ public class AggregateRootTest
         var orderCreatedDomainEvent = new OrderCreated()
         {
             Title = "coal for m mine",
-            // Version = 1,
-            // EventId = Guid.NewGuid(),
             OrderNumber = 100
         };
         var orderCreatedDomainEvent2 = new OrderCreated()
         {
-            // Version = 1,
-            // EventId = Guid.NewGuid(),
+            Title = "Iron",
+            OrderNumber = 200
         };
         var aggregate = new AggregateRootImplementation();
         aggregate.AddEvent(orderCreatedDomainEvent);
@@ -63,6 +60,7 @@ public class AggregateRootTest
             Title = "Ali",
             OrderNumber = 11,
         };
+        var order = new Order();
     }
 
     [Fact]

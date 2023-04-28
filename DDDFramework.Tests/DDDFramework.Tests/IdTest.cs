@@ -1,4 +1,5 @@
 ﻿using Aggregate;
+using DDDFramework.Domain.Order;
 using FluentAssertions;
 
 namespace DDDFramework.Tests;
