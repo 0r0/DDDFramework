@@ -4,10 +4,15 @@ namespace DDDFramework.Tests;
 
 public class OrderCreated : DomainEvent
 {
-    public OrderCreated() => Id = Guid.NewGuid();
+    public OrderCreated()
+    {
+        
+    }
 
-    public Guid Id { get; }
+  
     public long OrderNumber { get; init; }
 
     public string Title { get; init; }
+    
+    public bool IsActive { get; set; }
 }
