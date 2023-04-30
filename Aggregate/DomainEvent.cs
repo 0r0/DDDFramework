@@ -1,10 +1,11 @@
 ﻿namespace Aggregate;
 
-public class DomainEvent :IDomainEvent
+public class DomainEvent : IDomainEvent
 {
-    public Guid EventId { get; set; }
-    public long Version { get; set; }
-    public DateTime PublishTime =>DateTime.Now;
-    
-    
+    public Guid EventId => Guid.NewGuid();
+
+    public long Version { get; set; } = 1;
+
+
+    public DateTime PublishTime => DateTime.Now;
 }

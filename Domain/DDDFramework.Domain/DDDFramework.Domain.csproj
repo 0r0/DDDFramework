@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Aggregate\Aggregate.csproj" />
+      <ProjectReference Include="..\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>

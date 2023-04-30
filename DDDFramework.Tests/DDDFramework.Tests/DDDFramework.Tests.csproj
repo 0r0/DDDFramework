@@ -24,6 +24,8 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Aggregate\Aggregate.csproj" />
+        <ProjectReference Include="..\..\Domain\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
+        <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
     </ItemGroup>
 
 </Project>
