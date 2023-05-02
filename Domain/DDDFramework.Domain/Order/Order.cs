@@ -1,5 +1,5 @@
 ﻿using Aggregate;
-using DDDFramework.Tests;
+using DDDFramework.Domain.Contracts.Order;
 
 namespace DDDFramework.Domain.Order;
 

@@ -1,4 +1,4 @@
-﻿using DDDFramework.Tests;
+﻿using DDDFramework.Domain.Order;
 
 namespace DDDFramework.Application.Order;
 
@@ -15,12 +15,12 @@ internal class OrderArgFactory : IOrderArgFactory
         throw new NotImplementedException();
     }
 
-    public async  Task<OrderArgs> CreateFrom(OrderPlacedCommand orderPlaced)
+    public async Task<OrderArgs> CreateFrom(OrderPlacedCommand orderPlaced)
     {
         throw new NotImplementedException();
     }
 
-    public async  Task<OrderArgs> CreateFrom(OrderActivatedCommand orderActivated)
+    public async Task<OrderArgs> CreateFrom(OrderActivatedCommand orderActivated)
     {
         throw new NotImplementedException();
     }
