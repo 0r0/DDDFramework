@@ -3,17 +3,17 @@ using DDDFramework.Domain.Contracts.Order;
 
 namespace DDDFramework.Domain.Order;
 
-public interface ISingleObjectBuilder< T,TProperty> where T : class, new()
+public interface ISingleObjectBuilder<T> where T : class, new()
 {
-    void With(Func<T, TProperty> func, TProperty value);
+    void With<TProperty>(Func<T, TProperty> func, TProperty value);
     T Build();
 }
 
 
 
-public class SingleObjectBuilder<T,TProperty> : ISingleObjectBuilder<T,TProperty> where T : class, new()
+public class SingleObjectBuilder<T> : ISingleObjectBuilder<T> where T : class, new()
 {
-    public void With(Func<T, TProperty> func, TProperty value)
+    public void With<TProperty>(Func<T, TProperty> func, TProperty value)
     {
         // Func<OrderArgs,Guid> m = M;
         // var ty2 = typeof(OrderArgs).GetProperty("Id").SetValue(ty2,Guid.NewGuid());
@@ -38,6 +38,7 @@ public class SingleObjectBuilder<T,TProperty> : ISingleObjectBuilder<T,TProperty
 
     }
 
+ 
     public T Build()
     {
         throw new NotImplementedException();
