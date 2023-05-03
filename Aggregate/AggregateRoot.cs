@@ -1,11 +1,8 @@
-﻿using MassTransit;
-
-namespace Aggregate;
-
+﻿namespace Aggregate;
 public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
 {
     public List<DomainEvent> _uncommitedEvent;
-     
+
     public long Version { get; private set; }
 
     protected AggregateRoot()

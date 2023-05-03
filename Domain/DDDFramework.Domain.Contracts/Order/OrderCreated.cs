@@ -1,13 +1,17 @@
 ﻿using Aggregate;
 
-namespace DDDFramework.Tests;
+namespace DDDFramework.Domain.Contracts.Order;
 
 public class OrderCreated : DomainEvent
 {
-    public OrderCreated() => Id = Guid.NewGuid();
+    public OrderCreated()
+    {
+    }
 
-    public Guid Id { get; }
+    public OrderId Id { get; set; }
     public long OrderNumber { get; init; }
 
     public string Title { get; init; }
+
+    public bool IsActive { get; set; }
 }

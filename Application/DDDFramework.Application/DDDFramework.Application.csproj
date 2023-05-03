@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
       <ProjectReference Include="..\..\Gatways\Gateways\Gateways.csproj" />
     </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using Aggregate;
 
-namespace DDDFramework.Tests;
+namespace DDDFramework.Domain.Contracts.Order;
 
 public sealed class OrderId :Id<Guid>
 {

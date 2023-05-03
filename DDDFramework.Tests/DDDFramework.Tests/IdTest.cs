@@ -1,4 +1,5 @@
 ﻿using Aggregate;
+using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
 using FluentAssertions;
 
