@@ -11,4 +11,8 @@
       <ProjectReference Include="..\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="NBuilder" Version="6.1.0" />
+    </ItemGroup>
+
 </Project>
