@@ -17,4 +17,10 @@
       <ProjectReference Include="..\..\Gatways\Gateways\Gateways.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="DDDFramework.Application.Contracts">
+        <HintPath>..\..\DDDFramework.Application.Contracts\bin\Debug\net6.0\DDDFramework.Application.Contracts.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

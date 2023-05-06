@@ -1,26 +1,36 @@
-﻿using DDDFramework.Domain.Order;
+using DDDFramework.Application.Contracts.Orders;
+using DDDFramework.Application.Order;
+using DDDFramework.Domain.Contracts.Order;
+using DDDFramework.Domain.Order;
+using FizzWare.NBuilder;
 
-namespace DDDFramework.Application.Order;
+namespace DDDFramework.Tests.Application;
 
-internal class OrderArgFactory : IOrderArgFactory
+public class OrderArgFactory : IOrderArgFactory
 {
-    public async Task<OrderArgs> CreateFrom(OrderCreatedCommand orderCreated)
+    public OrderArgs CreateFrom(CreateOrderCommand command)
     {
-        // var orderArg = OrderArgs.Builder.With(a => a.Title, orderCreated.Title)
-        //     .With(a => a.IsActive, orderCreated.IsActive)
-        //     .With(a => a.OrderNumber, orderCreated.OrderNumber)
-        //     .With(a => a.Id, new OrderId(Guid.NewGuid()))
-        //     .Build();
-        // return await orderArg;
-        throw new NotImplementedException();
+        command.Id = OrderId.New().DbId;
+        var orderArgs = OrderArgs.Builder
+            .With(a => a.Id, new OrderId(command.Id))
+            .With(a => a.Title, command.Title)
+            .With(a => a.OrderNumber, command.OrderNumber)
+            .With(a => a.IsActive, command.IsActive)
+            .Build();
+        return orderArgs;
     }
 
-    public async Task<OrderArgs> CreateFrom(OrderPlacedCommand orderPlaced)
+    public OrderArgs CreateFrom(PlaceOrderCommand command)
     {
-        throw new NotImplementedException();
+        return OrderArgs.Builder
+            .With(a => a.Id, new OrderId(command.Id))
+            .With(a => a.Title, command.Title)
+            .With(a => a.OrderNumber, command.OrderNumber)
+            .With(a=>a.IsActive,command.IsActive)
+            .Build();
     }
 
-    public async Task<OrderArgs> CreateFrom(OrderActivatedCommand orderActivated)
+    public OrderArgs CreateFrom(UpdateOrderInfoCommand command)
     {
         throw new NotImplementedException();
     }
