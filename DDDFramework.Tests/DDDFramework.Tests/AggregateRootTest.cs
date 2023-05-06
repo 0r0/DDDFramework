@@ -67,8 +67,8 @@ public class AggregateRootTest
     [Fact]
     public void domian_event_set_automatically_eventId_and_version()
     {
-        var domainEvent = new DomainEvent();
-        Assert.True(domainEvent.EventId != Guid.Empty);
-        Assert.True(domainEvent.Version > 0);
+        var domainEvent = new OrderCreated();
+         Assert.True(domainEvent.EventId != Guid.Empty);
+         Assert.True(domainEvent.Version > 0);
     }
 }
