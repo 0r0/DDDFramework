@@ -1,6 +1,6 @@
 ﻿namespace Aggregate;
 
-public class DomainEvent : IDomainEvent
+public abstract class DomainEvent : IDomainEvent
 {
     public Guid EventId => Guid.NewGuid();
 

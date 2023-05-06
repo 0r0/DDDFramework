@@ -2,10 +2,12 @@
 
 public class OrderActivated : OrderPlaced
 {
-    public OrderActivated()
+    
+
+    public void ActivateOrder() => IsActive = true;
+
+    public OrderActivated(long orderNumber, string title) : base(orderNumber, title)
     {
         ActivateOrder();
     }
-
-    public void ActivateOrder() => IsActive = true;
 }

@@ -4,10 +4,7 @@ namespace DDDFramework.Domain.Contracts.Order;
 
 public class OrderPlaced : DomainEvent
 {
-    protected OrderPlaced()
-    {
-        
-    }
+
 
     public OrderPlaced(long orderNumber, string title)
     {

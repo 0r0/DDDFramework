@@ -17,7 +17,7 @@ public class AggregateRootFactoryTest
                 Version = 1,
                 OrderNumber = 11
             },
-            new OrderActivated(),
+            new OrderActivated(11,"Coal"),
             new OrderPlaced(11, "Metan"),
             new OrderInfoUpdated("Sadam Yazid Kaffar")
 
