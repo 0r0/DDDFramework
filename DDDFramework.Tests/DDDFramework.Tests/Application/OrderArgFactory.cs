@@ -21,7 +21,12 @@ public class OrderArgFactory : IOrderArgFactory
 
     public OrderArgs CreateFrom(PlaceOrderCommand command)
     {
-        throw new NotImplementedException();
+        return OrderArgs.Builder
+            .With(a => a.Id, new OrderId(command.Id))
+            .With(a => a.Title, command.Title)
+            .With(a => a.OrderNumber, command.OrderNumber)
+            .With(a=>a.IsActive,command.IsActive)
+            .Build();
     }
 
     public OrderArgs CreateFrom(UpdateOrderInfoCommand command)

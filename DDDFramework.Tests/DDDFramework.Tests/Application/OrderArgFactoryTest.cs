@@ -66,10 +66,23 @@ public class OrderArgFactoryTest
         //call activatedOrder event then check event and command become activated
 
     }
-    
+
     [Theory]
     [InlineData("Gizem", 20)]
     [InlineData("Mehdi", 40)]
     private void order_arg_created_from_place_order_command(string title, long orderNumber)
-    {}
+    {
+        var command = new PlaceOrderCommand()
+        {
+            Id = default,
+            Title = title,
+            IsActive = true,
+            OrderNumber = orderNumber
+        };
+        var argFactory = new OrderArgFactory();
+        var orderArgs = argFactory.CreateFrom(command);
+        Assert.Equal(title,orderArgs.Title);
+        Assert.Equal(orderNumber,orderArgs.OrderNumber);
+        Assert.True(orderArgs.IsActive);
+    }
 }
