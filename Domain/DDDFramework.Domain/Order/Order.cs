@@ -13,11 +13,22 @@ public partial class Order : AggregateRoot<OrderId>
     public void ApplyAndPublish(DomainEvent @event)
     {
         _uncommitedEvent.Add(@event);
-        When((dynamic) @event);
+        When((dynamic)@event);
     }
 
     public void When(OrderCreated @event)
     {
-        
+    }
+
+    public void When(OrderActivated @event)
+    {
+    }
+
+    public void When(OrderPlaced @event)
+    {
+    }
+
+    public void When(OrderInfoUpdated @event)
+    {
     }
 }

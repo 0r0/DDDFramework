@@ -18,11 +18,13 @@ public class AggregateRootFactoryTest
                 OrderNumber = 11
             },
             new OrderActivated(),
-            new OrderPlaced(11, "Metan")
+            new OrderPlaced(11, "Metan"),
+            new OrderInfoUpdated("Sadam Yazid Kaffar")
 
         };
         //make aggregate root from aggregate factory
         var orderAggregate =new AggregateRootFactory().Create<Order>(events);
+        
       
 
     }
