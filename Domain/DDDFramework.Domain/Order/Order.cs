@@ -5,30 +5,5 @@ namespace DDDFramework.Domain.Order;
 
 public partial class Order : AggregateRoot<OrderId>
 {
-    public override void Apply(DomainEvent @event)
-    {
-        When((dynamic)@event);
-    }
-
-    public void ApplyAndPublish(DomainEvent @event)
-    {
-        _uncommitedEvent.Add(@event);
-        When((dynamic)@event);
-    }
-
-    public void When(OrderCreated @event)
-    {
-    }
-
-    public void When(OrderActivated @event)
-    {
-    }
-
-    public void When(OrderPlaced @event)
-    {
-    }
-
-    public void When(OrderInfoUpdated @event)
-    {
-    }
+public bool IsActive { get; private set; }
 }
