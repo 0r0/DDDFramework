@@ -1,10 +1,8 @@
-using DDDFramework.Application.Contracts.Orders;
-using DDDFramework.Application.Order;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
 using FizzWare.NBuilder;
 
-namespace DDDFramework.Tests.Application;
+namespace DDDFramework.Application.Order;
 
 public class OrderArgFactory : IOrderArgFactory
 {
@@ -26,7 +24,7 @@ public class OrderArgFactory : IOrderArgFactory
             .With(a => a.Id, new OrderId(command.Id))
             .With(a => a.Title, command.Title)
             .With(a => a.OrderNumber, command.OrderNumber)
-            .With(a=>a.IsActive,command.IsActive)
+            .With(a => a.IsActive, command.IsActive)
             .Build();
     }
 

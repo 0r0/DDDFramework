@@ -1,8 +1,9 @@
 using Aggregate;
 using DDDFramework.Application;
-using DDDFramework.Application.Contracts.Orders;
+using DDDFramework.Application.Order;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
+
 
 namespace DDDFramework.Tests.Application;
 
@@ -44,10 +45,7 @@ public class OrderArgFactoryTest
         
         var argFactory = new OrderArgFactory();
         var orderArg = argFactory.CreateFrom(createOrderCommand);
-        var activateCommand = new ActivateOrderCommand()
-        {
-            IsActive = true
-        };
+        var activateCommand = new OrderActivated();
         var events = new List<DomainEvent>()
         {
             new OrderCreated()
