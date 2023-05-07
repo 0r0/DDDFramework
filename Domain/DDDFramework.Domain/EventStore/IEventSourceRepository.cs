@@ -1,6 +1,6 @@
 using Aggregate;
 
-namespace DDDFramework.Tests.EventStore;
+namespace DDDFramework.Domain.EventStore;
 
 public interface IEventSourceRepository<T, TKey> : IRepository where T : AggregateRoot<TKey> 
 {

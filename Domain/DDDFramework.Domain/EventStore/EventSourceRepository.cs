@@ -1,6 +1,6 @@
 ﻿using Aggregate;
 
-namespace DDDFramework.Tests.EventStore;
+namespace DDDFramework.Domain.EventStore;
 
 /// <summary>
 /// load aggregate form repository of events

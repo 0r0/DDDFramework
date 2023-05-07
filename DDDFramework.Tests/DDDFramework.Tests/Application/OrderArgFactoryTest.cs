@@ -1,4 +1,5 @@
 using Aggregate;
+using DDDFramework.Application;
 using DDDFramework.Application.Contracts.Orders;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
@@ -56,7 +57,7 @@ public class OrderArgFactoryTest
                 IsActive = orderArg.IsActive,
                 OrderNumber = orderArg.OrderNumber
             },
-            new OrderActivated(orderArg.OrderNumber,orderArg.Title)
+            new OrderActivated()
         };
         
         var aggregateRoot = new AggregateRootFactory().Create<Order>(events);
@@ -68,8 +69,8 @@ public class OrderArgFactoryTest
     }
 
     [Theory]
-    [InlineData("Gizem", 20)]
-    [InlineData("Mehdi", 40)]
+    [InlineData("Gizem", 28)]
+    [InlineData("Mehdi", 32)]
     private void order_arg_created_from_place_order_command(string title, long orderNumber)
     {
         var command = new PlaceOrderCommand()

@@ -1,6 +1,6 @@
 ﻿using Aggregate;
 
-namespace DDDFramework.Tests.EventStore;
+namespace DDDFramework.Domain.EventStore;
 
 /// <summary>
 /// get events from event store by sending event stream Id to event store;

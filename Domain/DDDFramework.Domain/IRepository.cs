@@ -1,4 +1,4 @@
-namespace DDDFramework.Tests.EventStore;
+namespace DDDFramework.Domain;
 /// <summary>
 /// repository remark interface
 /// </summary>

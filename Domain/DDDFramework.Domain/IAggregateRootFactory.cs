@@ -1,6 +1,6 @@
 ﻿using Aggregate;
 
-namespace DDDFramework.Tests;
+namespace DDDFramework.Domain;
 /// <summary>
 /// stream events convention {aggregateType}-{aggregateId}
 /// </summary>
