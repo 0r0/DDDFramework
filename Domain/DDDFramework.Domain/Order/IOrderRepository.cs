@@ -4,6 +4,6 @@ namespace DDDFramework.Domain.Order;
 
 public interface IOrderRepository : IRepository
 {
-    Order Get(OrderId orderId);
-    void Add(Order order);
+    Task<Order> Get(OrderId orderId);
+    Task Add(Order order);
 }
