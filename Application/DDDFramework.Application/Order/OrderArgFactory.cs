@@ -30,6 +30,8 @@ public class OrderArgFactory : IOrderArgFactory
 
     public OrderArgs CreateFrom(UpdateOrderInfoCommand command)
     {
-        throw new NotImplementedException();
+        return OrderArgs.Builder
+            .With(a => a.Title, command.Title)
+            .Build();
     }
 }
