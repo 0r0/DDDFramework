@@ -24,22 +24,22 @@ public class OrderCommandHandlers : ICommandHandler<CreateOrderCommand>,
     {
         var arg = _argFactory.CreateFrom(command);
         var order = await Domain.Order.Order.Create(arg, _service);
-        await _repository.Add(order).ConfigureAwait(false);
+        _repository.Add(order);
     }
 
 
     public async Task Handle(PlaceOrderCommand command)
     {
         var arg = _argFactory.CreateFrom(command);
-        var order = await _repository.Get(arg.Id);
+        var order = _repository.Get(arg.Id);
         await order.Placed(arg, _service);
-        await _repository.Add(order).ConfigureAwait(false);
+        _repository.Add(order);
     }
 
     public async Task Handle(UpdateOrderInfoCommand command)
     {
         var arg = _argFactory.CreateFrom(command);
-        var order = await _repository.Get(arg.Id);
+        var order = _repository.Get(arg.Id);
         await order.UpdatedInfo(arg, _service);
     }
 }
