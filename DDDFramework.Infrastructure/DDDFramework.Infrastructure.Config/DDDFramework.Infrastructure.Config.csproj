@@ -11,4 +11,11 @@
       <PackageReference Include="Autofac" Version="7.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Application\DDDFramework.Application\DDDFramework.Application.csproj" />
+      <ProjectReference Include="..\..\DDDFramework.Application.Contracts\DDDFramework.Application.Contracts.csproj" />
+      <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
+      <ProjectReference Include="..\Persistence.ES\Persistence.ES.csproj" />
+    </ItemGroup>
+
 </Project>
