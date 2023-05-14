@@ -8,7 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Autofac" Version="7.0.1" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DDDFramework.Infrastructure\DDDFramework.Infrastructure.Config\DDDFramework.Infrastructure.Config.csproj" />
+      <ProjectReference Include="..\Gatways\Gateways\Gateways.csproj" />
     </ItemGroup>
 
 </Project>
