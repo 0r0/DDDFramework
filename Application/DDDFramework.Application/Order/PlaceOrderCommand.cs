@@ -1,9 +1,9 @@
 namespace DDDFramework.Application.Order;
 
-public class OrderCreatedCommand
+public class PlaceOrderCommand
 {
-    public Guid Id { get; set; }
+    public Guid Id { get;  set; }
     public long OrderNumber { get; set; }
     public string Title { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get;  set; }
 }

@@ -1,11 +1,11 @@
 ﻿using Aggregate;
 
-namespace DDDFramework.Tests.EventStore;
+namespace DDDFramework.Domain.EventStore;
 
 /// <summary>
 /// load aggregate form repository of events
 /// </summary>
-public class EventSourceRepository<T, TKey> where T : AggregateRoot<TKey>
+public class EventSourceRepository<T, TKey> : IEventSourceRepository<T, TKey> where T : AggregateRoot<TKey>
 {
     private readonly IEventStore _eventStore;
     private readonly IAggregateRootFactory _aggregateRootFactory;
@@ -32,6 +32,12 @@ public class EventSourceRepository<T, TKey> where T : AggregateRoot<TKey>
     {
         var eventsList = _eventStore.GetEvents(GetStreamId(id));
         return _aggregateRootFactory.Create<T>(eventsList);
+    }
+
+    public void AppendEvents(T aggregate)
+    {
+        var events = aggregate.GetUncommitedEvents();
+        _eventStore.Append(GetStreamId(aggregate.Id),events);
     }
 
     private string GetStreamId(TKey id)

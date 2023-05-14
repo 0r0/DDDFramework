@@ -23,7 +23,7 @@ public partial class Order
 
     public void When(OrderActivated @event)
     {
-        IsActive = @event.IsActive;
+        IsActive = true;
     }
 
     public void When(OrderPlaced @event)

@@ -1,6 +1,6 @@
 namespace DDDFramework.Application.Contracts.Orders;
 
-public class ActivateOrderCommand
+public class OrderActivated
 {
     public bool IsActive { get; set; }
 }

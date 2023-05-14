@@ -1,6 +1,6 @@
 namespace DDDFramework.Application.Contracts.Orders;
 
-public class PlaceOrderCommand
+public class OrderPlaced
 {
     public Guid Id { get; set; }
     public long OrderNumber { get; set; }
