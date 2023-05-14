@@ -34,6 +34,12 @@ public class EventSourceRepository<T, TKey> : IEventSourceRepository<T, TKey> wh
         return _aggregateRootFactory.Create<T>(eventsList);
     }
 
+    public void AppendEvents(T aggregate)
+    {
+        var events = aggregate.GetUncommitedEvents();
+        _eventStore.Append(GetStreamId(aggregate.Id),events);
+    }
+
     private string GetStreamId(TKey id)
     {
         return $"{typeof(T).Name}-{id}";

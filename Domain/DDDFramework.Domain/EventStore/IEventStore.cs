@@ -8,4 +8,5 @@ namespace DDDFramework.Domain.EventStore;
 public interface IEventStore
 {
     IReadOnlyCollection<DomainEvent> GetEvents(string eventStreamId);
+    void Append(string streamName, IReadOnlyCollection<DomainEvent> events);
 }
