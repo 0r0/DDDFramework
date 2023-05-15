@@ -6,4 +6,10 @@ namespace Gateways.Controllers;
 [Route("api/[controller]")]
 public class OrderQueryController : ControllerBase
 {
+
+    [HttpGet]
+    public async Task<IReadOnlyCollection<OrderResponse>> Get()
+    {
+        return new List<OrderResponse>();
+    }
 }

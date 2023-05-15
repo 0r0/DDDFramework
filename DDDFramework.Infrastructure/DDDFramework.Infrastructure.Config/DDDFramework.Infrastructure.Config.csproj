@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Application\DDDFramework.Application\DDDFramework.Application.csproj" />
+      <ProjectReference Include="..\..\Application\DDDFramework.Query\DDDFramework.Query.csproj" />
       <ProjectReference Include="..\..\DDDFramework.Application.Contracts\DDDFramework.Application.Contracts.csproj" />
       <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
       <ProjectReference Include="..\Persistence.ES\Persistence.ES.csproj" />

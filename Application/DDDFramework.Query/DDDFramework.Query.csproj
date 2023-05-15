@@ -10,7 +10,10 @@
       <Folder Include="Handlers" />
       <Folder Include="Requests" />
       <Folder Include="Responses" />
-      <Folder Include="Services" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
     </ItemGroup>
 
 </Project>
