@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using DDDFramework.Application.Contracts;
 using DDDFramework.Application.Handlers;
+using DDDFramework.Core.Application.Contracts;
 using DDDFramework.Domain.EventStore;
 using DDDFramework.Domain.Order;
 using Persistence.ES;
