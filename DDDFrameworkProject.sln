@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EF601538-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aggregate", "Aggregate\Aggregate.csproj", "{CC82D100-3B16-4068-91E4-A28B9EDB67BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDFramework.Core.Application.Contracts", "Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj", "{1D454046-FD40-4F64-8E2E-A3B4E4DC9B56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,7 @@ Global
 		{42CD95A9-A2B0-4D03-BD31-8306CA434702} = {AA98CC24-3060-4E40-A1FB-DB208E0D6C53}
 		{2A5E16FF-E0E3-46E9-ADE2-902895342603} = {EE8414F4-E304-4E17-B24E-9C09137C24C1}
 		{CC82D100-3B16-4068-91E4-A28B9EDB67BD} = {EF601538-964C-4903-AD28-8C880648582E}
+		{1D454046-FD40-4F64-8E2E-A3B4E4DC9B56} = {EF601538-964C-4903-AD28-8C880648582E}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E36650A4-15F7-4E38-A995-0C76DF6D50B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -116,5 +119,9 @@ Global
 		{CC82D100-3B16-4068-91E4-A28B9EDB67BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC82D100-3B16-4068-91E4-A28B9EDB67BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC82D100-3B16-4068-91E4-A28B9EDB67BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D454046-FD40-4F64-8E2E-A3B4E4DC9B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D454046-FD40-4F64-8E2E-A3B4E4DC9B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D454046-FD40-4F64-8E2E-A3B4E4DC9B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D454046-FD40-4F64-8E2E-A3B4E4DC9B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

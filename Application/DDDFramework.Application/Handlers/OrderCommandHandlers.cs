@@ -1,6 +1,6 @@
-using DDDFramework.Application.Contracts;
 using DDDFramework.Application.Contracts.Orders;
 using DDDFramework.Application.Order;
+using DDDFramework.Core.Application.Contracts;
 using DDDFramework.Domain.Order;
 
 namespace DDDFramework.Application.Handlers;

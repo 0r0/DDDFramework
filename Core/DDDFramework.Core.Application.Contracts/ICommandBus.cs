@@ -1,4 +1,4 @@
-namespace DDDFramework.Application.Contracts;
+namespace DDDFramework.Core.Application.Contracts;
 
 public interface ICommandBus
 {

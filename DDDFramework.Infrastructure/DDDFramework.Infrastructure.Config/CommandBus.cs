@@ -1,5 +1,5 @@
 using Autofac;
-using DDDFramework.Application.Contracts;
+using DDDFramework.Core.Application.Contracts;
 
 namespace DDDFramework.Infrastructure.Config;
 
