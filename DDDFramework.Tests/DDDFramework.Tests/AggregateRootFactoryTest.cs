@@ -1,5 +1,6 @@
 ﻿using Aggregate;
 using DDDFramework.Application;
+using DDDFramework.Domain;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
 
@@ -12,12 +13,11 @@ public class AggregateRootFactoryTest
     {
         var events = new List<DomainEvent>()
         {
-            new OrderCreated()
-            {
-                Title = "Coal",
-                Version = 1,
-                OrderNumber = 11
-            },
+            new OrderCreated(
+                title: "Coal",
+                isActive: false,
+                orderNumber: 11,
+                id: new OrderId(Guid.NewGuid())),
             new OrderActivated(),
             new OrderPlaced(11, "Metan"),
             new OrderInfoUpdated("Sadam Yazid Kaffar")

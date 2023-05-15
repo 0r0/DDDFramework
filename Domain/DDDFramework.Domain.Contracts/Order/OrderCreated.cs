@@ -4,6 +4,14 @@ namespace DDDFramework.Domain.Contracts.Order;
 
 public class OrderCreated : DomainEvent
 {
+    public OrderCreated(OrderId id, long orderNumber, string title, bool isActive)
+    {
+        Id = id;
+        OrderNumber = orderNumber;
+        Title = title;
+        IsActive = isActive;
+    }
+
     public OrderCreated()
     {
     }

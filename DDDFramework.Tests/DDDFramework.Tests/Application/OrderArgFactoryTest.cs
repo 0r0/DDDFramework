@@ -1,9 +1,8 @@
 using Aggregate;
-using DDDFramework.Application;
 using DDDFramework.Application.Order;
+using DDDFramework.Domain;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
-
 
 namespace DDDFramework.Tests.Application;
 
