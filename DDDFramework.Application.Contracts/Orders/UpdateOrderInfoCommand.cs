@@ -1,6 +1,6 @@
 namespace DDDFramework.Application.Contracts.Orders;
 
-public class OrderInfoUpdated
+public class UpdateOrderInfoCommand
 {
     public string Title { get; set; }
 }

@@ -1,4 +1,5 @@
 using DDDFramework.Application.Contracts;
+using DDDFramework.Application.Contracts.Orders;
 using DDDFramework.Application.Order;
 using DDDFramework.Domain.Order;
 

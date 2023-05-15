@@ -12,6 +12,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="DDDFramework.Application">
+        <HintPath>..\..\DDDFramework.Infrastructure\DDDFramework.Infrastructure.Config\bin\Debug\net6.0\DDDFramework.Application.dll</HintPath>
+      </Reference>
       <Reference Include="Microsoft.AspNetCore.Mvc.Core">
         <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.15\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
       </Reference>
