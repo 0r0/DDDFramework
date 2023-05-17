@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Application\DDDFramework.Query\DDDFramework.Query.csproj" />
       <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
       <ProjectReference Include="..\..\DDDFramework.Application.Contracts\DDDFramework.Application.Contracts.csproj" />
     </ItemGroup>

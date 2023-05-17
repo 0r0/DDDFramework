@@ -8,11 +8,10 @@
 
     <ItemGroup>
       <Folder Include="Handlers" />
-      <Folder Include="Requests" />
-      <Folder Include="Responses" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
       <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
     </ItemGroup>
 
