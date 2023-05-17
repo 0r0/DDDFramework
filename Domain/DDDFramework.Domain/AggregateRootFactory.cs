@@ -1,7 +1,6 @@
 ﻿using Aggregate;
-using DDDFramework.Domain;
 
-namespace DDDFramework.Application;
+namespace DDDFramework.Domain;
 
 public class AggregateRootFactory : IAggregateRootFactory
 {

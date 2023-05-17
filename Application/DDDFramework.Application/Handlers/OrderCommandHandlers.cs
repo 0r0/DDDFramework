@@ -1,12 +1,15 @@
-using DDDFramework.Application.Contracts;
+using DDDFramework.Application.Contracts.Orders;
 using DDDFramework.Application.Order;
+using DDDFramework.Core.Application.Contracts;
+using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
 
 namespace DDDFramework.Application.Handlers;
 
 public class OrderCommandHandlers : ICommandHandler<CreateOrderCommand>,
     ICommandHandler<PlaceOrderCommand>,
-    ICommandHandler<UpdateOrderInfoCommand>
+    ICommandHandler<UpdateOrderInfoCommand>,
+    ICommandHandler<RemoveOrderCommand>
 {
     private readonly IOrderRepository _repository;
     private readonly IOrderArgFactory _argFactory;
@@ -41,5 +44,11 @@ public class OrderCommandHandlers : ICommandHandler<CreateOrderCommand>,
         var arg = _argFactory.CreateFrom(command);
         var order = _repository.Get(arg.Id);
         await order.UpdatedInfo(arg, _service);
+    }
+
+    public async Task Handle(RemoveOrderCommand command)
+    {
+        var order = _repository.Get(new OrderId(command.Id));
+        await order.Remove(_service);
     }
 }

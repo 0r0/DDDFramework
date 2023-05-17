@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
       <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
       <ProjectReference Include="..\..\Gatways\Gateways\Gateways.csproj" />
     </ItemGroup>
@@ -21,6 +22,10 @@
       <Reference Include="DDDFramework.Application.Contracts">
         <HintPath>..\..\DDDFramework.Application.Contracts\bin\Debug\net6.0\DDDFramework.Application.Contracts.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers" />
     </ItemGroup>
 
 </Project>

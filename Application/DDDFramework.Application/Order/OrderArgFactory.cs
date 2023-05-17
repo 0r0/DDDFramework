@@ -1,3 +1,4 @@
+using DDDFramework.Application.Contracts.Orders;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
 using FizzWare.NBuilder;

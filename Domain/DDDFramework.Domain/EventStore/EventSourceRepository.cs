@@ -10,24 +10,14 @@ public class EventSourceRepository<T, TKey> : IEventSourceRepository<T, TKey> wh
     private readonly IEventStore _eventStore;
     private readonly IAggregateRootFactory _aggregateRootFactory;
 
-    /// <summary>
-    /// event store send events as parameter to aggregateRootFactory then it return aggregate root for us
-    /// </summary>
-    /// <param name="eventStore"></param>
-    /// <param name="aggregateRootFactory"></param>
+
     public EventSourceRepository(IEventStore eventStore, IAggregateRootFactory aggregateRootFactory)
     {
         _eventStore = eventStore;
         _aggregateRootFactory = aggregateRootFactory;
     }
 
-    /// <summary>
-    /// get events from event store and save it in events variable
-    /// send send events as parameter to create method of aggregate root factory
-    /// return created aggregate root
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+
     public T GetById(TKey id)
     {
         var eventsList = _eventStore.GetEvents(GetStreamId(id));
@@ -37,7 +27,7 @@ public class EventSourceRepository<T, TKey> : IEventSourceRepository<T, TKey> wh
     public void AppendEvents(T aggregate)
     {
         var events = aggregate.GetUncommitedEvents();
-        _eventStore.Append(GetStreamId(aggregate.Id),events);
+        _eventStore.Append(GetStreamId(aggregate.Id), events);
     }
 
     private string GetStreamId(TKey id)
