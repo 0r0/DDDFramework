@@ -1,4 +1,4 @@
-namespace Gateways.Controllers;
+namespace DDDFramework.Query.Responses;
 
 public class OrderResponse
 {
