@@ -43,4 +43,10 @@ public partial class Order : AggregateRoot<OrderId>
         //todo! add guards here
         ApplyAndPublish(new OrderInfoUpdated(orderArgs.Title));
     }
+
+    public async Task Remove(IOrderService service)
+    {
+        //todo! add guards here
+        ApplyAndPublish(new OrderRemoved(Id));
+    }
 }

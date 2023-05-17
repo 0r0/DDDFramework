@@ -25,12 +25,26 @@ public class OrderController : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Put(Guid id, PlaceOrderCommand command)
     {
+        command.Id = id;
+        _commandBus.Dispatch(command);
         return NoContent();
     }
 
     [HttpPut("activate/{id:guid}")]
     public async Task<IActionResult> Put(Guid id, ActivateOrderCommand command)
     {
+        _commandBus.Dispatch(command);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}/{version:long}")]
+    public async Task<IActionResult> Delete(Guid id, long version)
+    {
+        _commandBus.Dispatch(new RemoveOrderCommand
+        {
+            Id = id,
+            Version =version
+        });
         return NoContent();
     }
 }
