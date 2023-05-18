@@ -6,15 +6,16 @@ public class InMemoryEventStore : IEventStore
 {
     private readonly Dictionary<string, IReadOnlyCollection<DomainEvent>> _events = new();
 
-    public IReadOnlyCollection<DomainEvent> GetEvents(string eventStreamId)
+    public Task<IReadOnlyCollection<DomainEvent>> GetEvents(string eventStreamId)
     {
-        return _events[eventStreamId];
+        return  Task.FromResult(_events[eventStreamId]);
     }
 
-    public void Append(string streamName, IReadOnlyCollection<DomainEvent> events)
+    public Task Append(string streamName, IReadOnlyCollection<DomainEvent> events)
     {
-        if (_events.ContainsKey(streamName))
-            _events[streamName].ToList().AddRange(events);
+        if (_events.TryGetValue(streamName, out var @event))
+            @event.ToList().AddRange(events);
         _events.Add(streamName, events);
+        return Task.CompletedTask;
     }
 }

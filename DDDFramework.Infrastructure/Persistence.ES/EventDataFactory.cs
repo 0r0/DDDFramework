@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Persistence.ES;
 
-public static class EventDataFactory
+internal static class EventDataFactory
 {
     public static EventData CreateFromDomainEvent(DomainEvent domainEvent)
     {

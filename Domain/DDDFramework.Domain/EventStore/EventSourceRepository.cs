@@ -21,7 +21,7 @@ public class EventSourceRepository<T, TKey> : IEventSourceRepository<T, TKey> wh
     public T GetById(TKey id)
     {
         var eventsList = _eventStore.GetEvents(GetStreamId(id));
-        return _aggregateRootFactory.Create<T>(eventsList);
+        return _aggregateRootFactory.Create<T>(eventsList.Result);
     }
 
     public void AppendEvents(T aggregate)
