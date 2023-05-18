@@ -15,15 +15,8 @@ public class EventStoreDb : IEventStore
 
     public async Task<IReadOnlyCollection<DomainEvent>> GetEvents(string eventStreamId)
     {
-        var streamEvents = new List<ResolvedEvent>();
-        StreamEventsSlice currentSlice;
-        long nextSliceStart = StreamPosition.Start;
-        do
-        {
-            currentSlice = await _connection.ReadStreamEventsForwardAsync(eventStreamId, nextSliceStart, 200, false);
-            nextSliceStart = currentSlice.NextEventNumber;
-            streamEvents.AddRange(currentSlice.Events);
-        } while (!currentSlice.IsEndOfStream);
+        var streamEvents = await EventStreamReader.
+            Read(_connection, eventStreamId, StreamPosition.Start, 200);
 
         return DomainEventFactory.Create(streamEvents);
     }
