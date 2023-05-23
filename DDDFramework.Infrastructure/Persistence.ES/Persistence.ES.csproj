@@ -11,4 +11,8 @@
       <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="EventStore.Client" Version="22.0.0" />
+    </ItemGroup>
+
 </Project>

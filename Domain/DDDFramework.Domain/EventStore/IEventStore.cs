@@ -7,6 +7,6 @@ namespace DDDFramework.Domain.EventStore;
 /// </summary>
 public interface IEventStore
 {
-    IReadOnlyCollection<DomainEvent> GetEvents(string eventStreamId);
-    void Append(string streamName, IReadOnlyCollection<DomainEvent> events);
+    Task<IReadOnlyCollection<DomainEvent>> GetEvents(string eventStreamId);
+    Task Append(string streamName, IReadOnlyCollection<DomainEvent> events);
 }
