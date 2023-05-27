@@ -10,6 +10,6 @@ public class EventTypeResolverTest
     {
         var resolver = new EventTypeResolver();
         resolver.AddTypesFromAssemblies(typeof(OrderCreated).Assembly);
-        Assert.Equal(typeof(OrderCreated),resolver.GetType(typeof(OrderCreated).Name));
+        Assert.Equal(typeof(OrderCreated),resolver.GetType(nameof(OrderCreated)));
     }
 }
