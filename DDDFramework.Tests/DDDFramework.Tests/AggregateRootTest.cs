@@ -30,7 +30,7 @@ public class AggregateRootTest
         Assert.Equal(@event, orderCreatedDomainEvent);
     }
 
-    // unit test for remove _uncommited event;
+    // unit test for remove _uncommitted event;
     [Fact]
     public void AggregateRoot_can_remove_unCommitedEvent()
     {
@@ -48,8 +48,8 @@ public class AggregateRootTest
         aggregate.AddEvent(orderCreatedDomainEvent);
         aggregate.AddEvent(orderCreatedDomainEvent2);
         aggregate.RemoveEvent(orderCreatedDomainEvent);
-        Assert.Equal(1, aggregate._uncommitedEvent.Count);
-        Assert.False(aggregate._uncommitedEvent.Contains(orderCreatedDomainEvent));
+        Assert.Single(aggregate._uncommitedEvent);
+        Assert.DoesNotContain(orderCreatedDomainEvent, aggregate._uncommitedEvent);
     }
 
     [Fact]
