@@ -7,10 +7,11 @@ namespace Persistence.ES;
 public class EventStoreDb : IEventStore
 {
     private readonly IEventStoreConnection _connection;
-
-    public EventStoreDb(IEventStoreConnection connection)
+    private readonly IEventTypeResolver _eventTypeResolver;
+    public EventStoreDb(IEventStoreConnection connection, IEventTypeResolver eventTypeResolver)
     {
         _connection = connection;
+        _eventTypeResolver = eventTypeResolver;
     }
 
     public async Task<IReadOnlyCollection<DomainEvent>> GetEvents(string eventStreamId)
@@ -18,7 +19,7 @@ public class EventStoreDb : IEventStore
         var streamEvents = await EventStreamReader.
             Read(_connection, eventStreamId, StreamPosition.Start, 200);
 
-        return DomainEventFactory.Create(streamEvents);
+        return DomainEventFactory.Create(streamEvents,_eventTypeResolver);
     }
 
     public async Task Append(string streamName, IReadOnlyCollection<DomainEvent> events)
