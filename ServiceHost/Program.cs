@@ -19,7 +19,7 @@ builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
 var eventStorSettings = new Settings();
  builder.Configuration.GetSection("EventStoreConnection").Bind(eventStorSettings);
 Console.Write(eventStorSettings);
-builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder => autofacBuilder.RegisterModule(new OrderModule()));
+builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder => autofacBuilder.RegisterModule(new OrderModule(eventStorSettings.Url)));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
