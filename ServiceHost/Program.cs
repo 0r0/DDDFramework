@@ -13,6 +13,12 @@ builder.Services.AddControllersInGateways();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json",optional:false,reloadOnChange:true)
+    .AddEnvironmentVariables();
+var eventStorSettings = new Settings();
+ builder.Configuration.GetSection("EventStoreConnection").Bind(eventStorSettings);
+Console.Write(eventStorSettings);
 builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder => autofacBuilder.RegisterModule(new OrderModule()));
 var app = builder.Build();
 
