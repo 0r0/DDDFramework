@@ -39,7 +39,6 @@ public class OrderModule : Module
         builder.RegisterAssemblyTypes(typeof(OrderCommandHandlers).Assembly)
             .As(type => type.GetInterfaces().Where(t => t.IsClosedTypeOf(typeof(ICommandHandler<>))))
             .InstancePerLifetimeScope();
-        // builder.RegisterType<EventStoreConnection>().As<IEventStoreConnection>().
     }
 
     private IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string connectionSetting)
