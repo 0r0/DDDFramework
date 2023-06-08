@@ -14,9 +14,9 @@ namespace DDDFramework.Infrastructure.Config;
 
 public class OrderModule : Module
 {
-    private readonly string _eventStoreSettings;
+    private readonly string? _eventStoreSettings;
 
-    public OrderModule(string eventStoreSettings)
+    public OrderModule(string? eventStoreSettings)
     {
         _eventStoreSettings = eventStoreSettings;
     }
@@ -41,8 +41,9 @@ public class OrderModule : Module
             .InstancePerLifetimeScope();
     }
 
-    private IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string connectionSetting)
+    private IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string? connectionSetting)
     {
+        if (connectionSetting is null) throw new ArgumentNullException(nameof(connectionSetting));
         var conn = EventStoreConnection.Create(new Uri(connectionSetting));
         conn.ConnectAsync().Wait();
         return conn;
