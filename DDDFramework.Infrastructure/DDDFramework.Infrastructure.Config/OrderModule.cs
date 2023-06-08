@@ -35,7 +35,7 @@ public class OrderModule : Module
         builder.RegisterType<EventTypeResolver>().As<IEventTypeResolver>().SingleInstance().OnActivated(a =>
             a.Instance.AddTypesFromAssemblies(typeof(OrderCreated).Assembly));
         builder.RegisterType<AggregateRootFactory>().As<IAggregateRootFactory>().SingleInstance();
-        builder.Register(a => EventStoreConnectionConf(a, _eventStoreSettings));
+        builder.Register(a => EventStoreConnectionConf(a, _eventStoreSettings)).SingleInstance();
         builder.RegisterAssemblyTypes(typeof(OrderCommandHandlers).Assembly)
             .As(type => type.GetInterfaces().Where(t => t.IsClosedTypeOf(typeof(ICommandHandler<>))))
             .InstancePerLifetimeScope();
@@ -43,7 +43,7 @@ public class OrderModule : Module
 
     private IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string connectionSetting)
     {
-        var conn = EventStoreConnection.Create(connectionSetting);
+        var conn = EventStoreConnection.Create(new Uri(connectionSetting));
         conn.ConnectAsync().Wait();
         return conn;
     }
