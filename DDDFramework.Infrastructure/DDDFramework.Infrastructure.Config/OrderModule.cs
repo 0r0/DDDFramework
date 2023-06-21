@@ -7,7 +7,6 @@ using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.EventStore;
 using DDDFramework.Domain.Order;
 using DDDFramework.Query.Services;
-using EventStore.ClientAPI;
 using Persistence.ES;
 
 namespace DDDFramework.Infrastructure.Config;
@@ -39,12 +38,5 @@ public class OrderModule : Module
         builder.RegisterAssemblyTypes(typeof(OrderCommandHandlers).Assembly)
             .As(type => type.GetInterfaces().Where(t => t.IsClosedTypeOf(typeof(ICommandHandler<>))))
             .InstancePerLifetimeScope();
-    }
-
-    private  IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string connectionSetting)
-    {
-        var conn = EventStoreConnection.Create(connectionSetting);
-         conn.ConnectAsync().Wait();
-        return conn;
     }
 }

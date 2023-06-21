@@ -1,9 +1,7 @@
 ﻿using Aggregate;
 using DDDFramework.Domain.EventStore;
 using EventStore.Client;
-using EventStore.ClientAPI;
-using EventData = EventStore.ClientAPI.EventData;
-using StreamPosition = EventStore.ClientAPI.StreamPosition;
+
 
 namespace Persistence.ES;
 
@@ -19,11 +17,11 @@ public class EventStoreDb : IEventStore
 
     public async Task<IReadOnlyCollection<DomainEvent>> GetEvents(string eventStreamId)
     {
-        // var streamEvents = await EventStreamReader.
-        //     Read(_client, eventStreamId, StreamPosition.Start, 200);
+        var streamEvents = await EventStreamReader.
+            Read(_client, eventStreamId, StreamPosition.Start, 200);
 
-        // return DomainEventFactory.Create(streamEvents,_eventTypeResolver);
-        return default;
+        return DomainEventFactory.Create(streamEvents,_eventTypeResolver);
+       
     }
 
     public async Task Append(string streamName, IReadOnlyCollection<DomainEvent> events)
