@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using DDDFramework.Infrastructure.Config;
+using MassTransit.Futures;
 using ServiceHost;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,13 +14,14 @@ builder.Services.AddControllersInGateways();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+var eventStorSettings = new Settings();
+builder.Configuration.GetSection("EventStoreConnection").Bind(eventStorSettings);
+builder.Services.AddEventStoreClient(new Uri(eventStorSettings.Url));
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("appsettings.json",optional:false,reloadOnChange:true)
     .AddEnvironmentVariables();
-var eventStoreSettings = new Settings();
- builder.Configuration.GetSection("EventStoreConnection").Bind(eventStoreSettings);
-Console.Write(eventStoreSettings);
-builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder => autofacBuilder.RegisterModule(new OrderModule(eventStoreSettings.Url)));
+Console.Write(eventStorSettings);
+builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder => autofacBuilder.RegisterModule(new OrderModule(eventStorSettings.Url)));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

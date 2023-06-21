@@ -14,9 +14,9 @@ namespace DDDFramework.Infrastructure.Config;
 
 public class OrderModule : Module
 {
-    private readonly string? _eventStoreSettings;
+    private readonly string _eventStoreSettings;
 
-    public OrderModule(string? eventStoreSettings)
+    public OrderModule(string eventStoreSettings)
     {
         _eventStoreSettings = eventStoreSettings;
     }
@@ -35,17 +35,16 @@ public class OrderModule : Module
         builder.RegisterType<EventTypeResolver>().As<IEventTypeResolver>().SingleInstance().OnActivated(a =>
             a.Instance.AddTypesFromAssemblies(typeof(OrderCreated).Assembly));
         builder.RegisterType<AggregateRootFactory>().As<IAggregateRootFactory>().SingleInstance();
-        builder.Register(a => EventStoreConnectionConf(a, _eventStoreSettings)).SingleInstance();
+        // builder.Register(a => EventStoreConnectionConf(a, _eventStoreSettings));
         builder.RegisterAssemblyTypes(typeof(OrderCommandHandlers).Assembly)
             .As(type => type.GetInterfaces().Where(t => t.IsClosedTypeOf(typeof(ICommandHandler<>))))
             .InstancePerLifetimeScope();
     }
 
-    private IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string? connectionSetting)
+    private  IEventStoreConnection EventStoreConnectionConf(IComponentContext context, string connectionSetting)
     {
-        if (connectionSetting is null) throw new ArgumentNullException(nameof(connectionSetting));
-        var conn = EventStoreConnection.Create(new Uri(connectionSetting));
-        conn.ConnectAsync().Wait();
+        var conn = EventStoreConnection.Create(connectionSetting);
+         conn.ConnectAsync().Wait();
         return conn;
     }
 }
