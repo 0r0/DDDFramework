@@ -8,19 +8,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="7.0.1" />
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.1.0-alpha.21317.5" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Autofac" Version="7.0.1"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0"/>
+        <PackageReference Include="EventStore.Client.Grpc.Streams" Version="21.2.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.1.0-alpha.21317.5"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DDDFramework.Infrastructure\DDDFramework.Infrastructure.Config\DDDFramework.Infrastructure.Config.csproj" />
-      <ProjectReference Include="..\Gatways\Gateways\Gateways.csproj" />
+        <ProjectReference Include="..\DDDFramework.Infrastructure\DDDFramework.Infrastructure.Config\DDDFramework.Infrastructure.Config.csproj"/>
+        <ProjectReference Include="..\Gatways\Gateways\Gateways.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
+        <Folder Include="Controllers"/>
     </ItemGroup>
 
 </Project>
