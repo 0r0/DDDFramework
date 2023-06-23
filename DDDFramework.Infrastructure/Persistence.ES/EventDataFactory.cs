@@ -12,7 +12,7 @@ internal static class EventDataFactory
         var data = JsonConvert.SerializeObject(domainEvent);
 
 
-        return new EventData(eventId: Uuid.NewUuid(),
+        return new EventData(eventId: domainEvent.EventId,
             type: domainEvent.GetType().Name,
             data: Encoding.UTF8.GetBytes(data),
             metadata: Array.Empty<byte>()
