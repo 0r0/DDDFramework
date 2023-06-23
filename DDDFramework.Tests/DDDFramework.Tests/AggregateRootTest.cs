@@ -1,5 +1,6 @@
 ﻿using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
+using EventStore.Client;
 
 namespace DDDFramework.Tests;
 
@@ -64,10 +65,10 @@ public class AggregateRootTest
     }
 
     [Fact]
-    public void domian_event_set_automatically_eventId_and_version()
+    public void domain_event_set_automatically_eventId_and_version()
     {
         var domainEvent = new OrderCreated();
-        Assert.True(domainEvent.EventId != Guid.Empty);
+        Assert.True(domainEvent.EventId != Uuid.Empty);
         Assert.True(domainEvent.Version > 0);
     }
 }
