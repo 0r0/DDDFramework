@@ -14,15 +14,17 @@ builder.Services.AddControllersInGateways();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 var eventStorSettings = new Settings();
 builder.Configuration.GetSection("EventStoreConnection").Bind(eventStorSettings);
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
-Console.Write(eventStorSettings);
+
 builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder =>
     autofacBuilder.RegisterModule(new OrderModule(eventStorSettings.Url)));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,5 +40,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHealthChecks("/healths");
 app.Run();
