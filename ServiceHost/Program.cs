@@ -37,7 +37,6 @@ Debug.Assert(eventStoreSettings.Url != null, "eventStoreSettings.Url != null");
 builder.Services.AddHealthChecks().AddEventStore(eventStoreSettings.Url);
     // .AddCheck("event-store",new InfrastructureHealthCheckEventStore(eventStoreSettings.Url))
     // .AddEventStore(eventStoreSettings.Url);
-// builder.Services.AddHealthChecksUi.AddInMemoryStorage();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,7 +52,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapHealthChecks("/healths");
+// /healthchecks-ui address
 app
     .UseRouting()
     .UseEndpoints(config =>
