@@ -1,5 +1,6 @@
 ﻿using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.Order;
+using EventStore.Client;
 
 namespace DDDFramework.Tests;
 
@@ -30,7 +31,7 @@ public class AggregateRootTest
         Assert.Equal(@event, orderCreatedDomainEvent);
     }
 
-    // unit test for remove _uncommited event;
+    // unit test for remove _uncommitted event;
     [Fact]
     public void AggregateRoot_can_remove_unCommitedEvent()
     {
@@ -48,8 +49,8 @@ public class AggregateRootTest
         aggregate.AddEvent(orderCreatedDomainEvent);
         aggregate.AddEvent(orderCreatedDomainEvent2);
         aggregate.RemoveEvent(orderCreatedDomainEvent);
-        Assert.Equal(1, aggregate._uncommitedEvent.Count);
-        Assert.False(aggregate._uncommitedEvent.Contains(orderCreatedDomainEvent));
+        Assert.Single(aggregate._uncommitedEvent);
+        Assert.DoesNotContain(orderCreatedDomainEvent, aggregate._uncommitedEvent);
     }
 
     [Fact]
@@ -64,10 +65,10 @@ public class AggregateRootTest
     }
 
     [Fact]
-    public void domian_event_set_automatically_eventId_and_version()
+    public void domain_event_set_automatically_eventId_and_version()
     {
         var domainEvent = new OrderCreated();
-        Assert.True(domainEvent.EventId != Guid.Empty);
+        Assert.True(domainEvent.EventId != Uuid.Empty);
         Assert.True(domainEvent.Version > 0);
     }
 }

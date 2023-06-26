@@ -17,6 +17,7 @@ public class OrderQueryController : ControllerBase
     }
 
     [HttpGet]
+    [ResponseCache(Duration = 30,Location = ResponseCacheLocation.Client)]
     public async Task<IReadOnlyCollection<OrderResponse>> Get()
     {
         return await _queryBus.Execute<GetAllOrders, 
