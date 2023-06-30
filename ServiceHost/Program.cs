@@ -35,8 +35,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder =>
 
 Debug.Assert(eventStoreSettings.Url != null, "eventStoreSettings.Url != null");
 builder.Services.AddHealthChecks().AddEventStore(eventStoreSettings.Url);
-    // .AddCheck("event-store",new InfrastructureHealthCheckEventStore(eventStoreSettings.Url))
-    // .AddEventStore(eventStoreSettings.Url);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

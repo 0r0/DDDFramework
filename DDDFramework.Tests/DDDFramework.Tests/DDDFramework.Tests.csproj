@@ -11,6 +11,7 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="6.10.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
         <PackageReference Include="NBuilder" Version="6.1.0" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -27,6 +28,7 @@
         <ProjectReference Include="..\..\Aggregate\Aggregate.csproj" />
         <ProjectReference Include="..\..\Application\DDDFramework.Application\DDDFramework.Application.csproj" />
         <ProjectReference Include="..\..\DDDFramework.Application.Contracts\DDDFramework.Application.Contracts.csproj" />
+        <ProjectReference Include="..\..\DDDFramework.Infrastructure\DDDFramework.Infrastructure.Config\DDDFramework.Infrastructure.Config.csproj" />
         <ProjectReference Include="..\..\DDDFramework.Infrastructure\Persistence.ES\Persistence.ES.csproj" />
         <ProjectReference Include="..\..\Domain\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
         <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
