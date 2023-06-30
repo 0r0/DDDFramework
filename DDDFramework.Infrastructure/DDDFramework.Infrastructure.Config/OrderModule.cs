@@ -8,6 +8,7 @@ using DDDFramework.Domain.EventStore;
 using DDDFramework.Domain.Order;
 using DDDFramework.Query.Services;
 using EventStore.Client;
+using MongoDBSynchronizer.Handlers;
 using Persistence.ES;
 
 namespace DDDFramework.Infrastructure.Config;
@@ -20,6 +21,11 @@ public class OrderModule : Module
     {
         _eventStoreSettings = eventStoreSettings ?? throw new
             NullReferenceException("event store connection string can not be null");
+    }
+
+    public OrderModule()
+    {
+        
     }
 
 
@@ -41,6 +47,8 @@ public class OrderModule : Module
         builder.RegisterAssemblyTypes(typeof(OrderCommandHandlers).Assembly)
             .As(type => type.GetInterfaces().Where(t => t.IsClosedTypeOf(typeof(ICommandHandler<>))))
             .InstancePerLifetimeScope();
+        builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
+            .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
     }
 
     private EventStoreClient GetEventStoreClient(IComponentContext context)
