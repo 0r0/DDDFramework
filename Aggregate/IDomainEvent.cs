@@ -1,6 +1,6 @@
 ﻿namespace Aggregate;
 
-public interface IDomainEvent
+public interface IDomainEvent:IEvent
 {
     
 }
