@@ -1,7 +1,7 @@
 ﻿using DDDFramework.Core.Application.Contracts;
 using DDDFramework.Domain.Contracts.Order;
 
-namespace DDDFramework.Tests.Agents.MongoDBSynchronizerTest.Handlers;
+namespace MongoDBSynchronizer.Handlers;
 
 public class OrderEventHandlers : IEventHandler<OrderCreated>
 

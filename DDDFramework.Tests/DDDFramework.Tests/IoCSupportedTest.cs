@@ -4,15 +4,20 @@ using Autofac.Core;
 namespace DDDFramework.Tests;
 
 
-    public class IoCSupportedTest<TModule> where TModule : IModule, new()
+    public class IoCSupportedTest<TModule> where TModule : IModule, new() 
+    
     {
         private IContainer _container;
 
-        public IoCSupportedTest()
+        public IoCSupportedTest(string config)
         {
             var builder = new ContainerBuilder();
+           
+                var module = (TModule)Activator.CreateInstance(typeof(TModule), args:config) ?? 
+                             throw new NullReferenceException(nameof(TModule));
 
-            builder.RegisterModule(new TModule());
+                builder.RegisterModule(module);
+            
 
             _container = builder.Build();
         }
@@ -27,4 +32,10 @@ namespace DDDFramework.Tests;
         {
             _container.Dispose();
         }
+
+        protected IContainer GetRegisteredContainer()
+        {
+            return _container;
+        }
+        
     }

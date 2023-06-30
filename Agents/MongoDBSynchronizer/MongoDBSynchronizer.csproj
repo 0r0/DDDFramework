@@ -1,13 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
       <Folder Include="Core\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
+      <ProjectReference Include="..\..\Domain\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
     </ItemGroup>
 
 </Project>
