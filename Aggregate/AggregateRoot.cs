@@ -1,4 +1,5 @@
 ﻿namespace Aggregate;
+
 public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
 {
     public List<DomainEvent> _uncommitedEvent;
@@ -10,7 +11,7 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
         _uncommitedEvent = new List<DomainEvent>();
     }
 
-    public IReadOnlyList<DomainEvent> GetUncommitedEvents() => _uncommitedEvent.AsReadOnly();
+    public IReadOnlyList<DomainEvent> GetUncommittedEvents() => _uncommitedEvent.AsReadOnly();
 
 
     public void AddEvent(DomainEvent @event)
@@ -31,7 +32,13 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
 
     public void SetAggregateVersion() => ++Version;
     public void SetDomainEventVersion(DomainEvent @event) => @event.Version = Version + 1L;
-    public void ClearUncommitedEvent() => _uncommitedEvent.Clear();
+    public void ClearUncommittedEvent() => _uncommitedEvent.Clear();
 
     public abstract void Apply(DomainEvent @event);
+
+    public void ApplyAndPublish(DomainEvent @event)
+    {
+        _uncommitedEvent.Add(@event);
+        this.Apply(@event);
+    }
 }

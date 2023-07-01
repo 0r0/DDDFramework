@@ -9,12 +9,7 @@ public partial class Order
     {
         When((dynamic)@event);
     }
-
-    public void ApplyAndPublish(DomainEvent @event)
-    {
-        _uncommitedEvent.Add(@event);
-        When((dynamic)@event);
-    }
+    
 
     public void When(OrderCreated @event)
     {
