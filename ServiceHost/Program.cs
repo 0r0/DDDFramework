@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using DDDFramework.Infrastructure.Config;
+using DDDFramework.Infrastructure.Config.SettingModels;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using ServiceHost;
@@ -24,17 +25,20 @@ builder.Services.AddHealthChecksUI(setupSettings: setup =>
 
 }).AddInMemoryStorage();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-var eventStoreSettings = new Settings();
+var eventStoreSettings = new EventStoreSettings();
+var mongoDbSettings = new MongoDbSettings();
 builder.Configuration.GetSection("EventStoreConnection").Bind(eventStoreSettings);
+builder.Configuration.GetSection("MongoDBConnection").Bind(mongoDbSettings);
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
 
 builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder =>
-    autofacBuilder.RegisterModule(new OrderModule(eventStoreSettings.Url)));
+    autofacBuilder.RegisterModule(new OrderModule(eventStoreSettings,mongoDbSettings)));
 
 Debug.Assert(eventStoreSettings.Url != null, "eventStoreSettings.Url != null");
-builder.Services.AddHealthChecks().AddEventStore(eventStoreSettings.Url);
+Debug.Assert(mongoDbSettings.Url != null, "mongoDbSettings.Url != null");
+builder.Services.AddHealthChecks().AddEventStore(eventStoreSettings.Url).AddMongoHealthCheck(mongoDbSettings.Url);
 
 var app = builder.Build();
 

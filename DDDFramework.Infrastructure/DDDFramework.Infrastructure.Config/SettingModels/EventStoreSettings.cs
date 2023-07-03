@@ -1,6 +1,6 @@
-﻿namespace ServiceHost;
+﻿namespace DDDFramework.Infrastructure.Config;
 
-public class Settings
+public class EventStoreSettings
 {
     public string? Url { get; set; }
     public string? UserName { get; set; }

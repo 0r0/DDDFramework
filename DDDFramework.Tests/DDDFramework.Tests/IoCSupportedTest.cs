@@ -9,7 +9,7 @@ namespace DDDFramework.Tests;
     {
         private IContainer _container;
 
-        public IoCSupportedTest(string config)
+        public IoCSupportedTest(object?[]? config)
         {
             var builder = new ContainerBuilder();
            
