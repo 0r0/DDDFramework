@@ -26,7 +26,7 @@ public class EventSourceRepository<T, TKey> : IEventSourceRepository<T, TKey> wh
 
     public void AppendEvents(T aggregate)
     {
-        var events = aggregate.GetUncommitedEvents();
+        var events = aggregate.GetUncommittedEvents();
         _eventStore.Append(GetStreamId(aggregate.Id), events);
     }
 

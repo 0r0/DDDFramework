@@ -27,7 +27,7 @@ public class AggregateRootTest
 
         var aggregate = new AggregateRootImplementation();
         aggregate.AddEvent(orderCreatedDomainEvent);
-        var @event = aggregate._uncommitedEvent.First();
+        var @event = aggregate._uncommittedEvent.First();
         Assert.Equal(@event, orderCreatedDomainEvent);
     }
 
@@ -49,8 +49,8 @@ public class AggregateRootTest
         aggregate.AddEvent(orderCreatedDomainEvent);
         aggregate.AddEvent(orderCreatedDomainEvent2);
         aggregate.RemoveEvent(orderCreatedDomainEvent);
-        Assert.Single(aggregate._uncommitedEvent);
-        Assert.DoesNotContain(orderCreatedDomainEvent, aggregate._uncommitedEvent);
+        Assert.Single(aggregate._uncommittedEvent);
+        Assert.DoesNotContain(orderCreatedDomainEvent, aggregate._uncommittedEvent);
     }
 
     [Fact]
