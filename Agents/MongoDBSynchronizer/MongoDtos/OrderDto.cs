@@ -1,6 +1,6 @@
 namespace MongoDBSynchronizer.MongoDtos;
 
-public class OrderDto
+public class OrderDto 
 {
     
 }

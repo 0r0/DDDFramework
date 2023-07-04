@@ -1,13 +1,27 @@
-﻿using Autofac;
-using DDDFramework.Domain.Contracts.Order;
+﻿using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Infrastructure.Config;
-using DDDFramework.Tests.IOCModules;
+using DDDFramework.Infrastructure.Config.SettingModels;
 
 namespace DDDFramework.Tests.Agents.MongoDBSynchronizerTest;
 
 public class EventHandlerTest : IoCSupportedTest<OrderModule>
 {
-    private const string Config = "esdb://admin:changeit@localhost:2113?tls=false";
+    private static readonly object?[]? Config =
+    {
+        new EventStoreSettings()
+        {
+            Url = "esdb://admin:changeit@localhost:2113?tls=false"
+        },
+        new MongoDbSettings()
+        {
+            Type = "OrderDto",
+            Password = "",
+            Url = "mongodb://localhost:27017",
+            CollectionName = "Order",
+            DatabaseName = "Order",
+            UserName = "",
+        }
+    };
 
     public EventHandlerTest() : base(config: Config)
     {

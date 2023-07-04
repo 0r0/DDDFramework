@@ -10,7 +10,6 @@ using DDDFramework.Domain.Order;
 using DDDFramework.Infrastructure.Config.SettingModels;
 using DDDFramework.Query.Services;
 using EventStore.Client;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDBSynchronizer.Handlers;
 using MongoDBSynchronizer.MongoDtos;
@@ -57,8 +56,7 @@ public class OrderModule : Module
             .InstancePerLifetimeScope();
         builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
             .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
-        var dtoType = GetDtoType();
-        builder.Register( GetMongoClient<OrderDto>);
+        builder.Register(GetMongoClient<OrderDto>);
     }
 
     private EventStoreClient GetEventStoreClient(IComponentContext context)
@@ -79,10 +77,5 @@ public class OrderModule : Module
             .GetCollection<TDto>(_mongoDatabaseSettings.CollectionName);
     }
 
-    private Type GetDtoType()
-    {
-        Type t = Type.GetType(_mongoDatabaseSettings.Type) ?? throw new ArgumentNullException(nameof(_mongoDatabaseSettings.Type),$"{nameof(_mongoDatabaseSettings.Type)} is null");
-        // return Activator.CreateInstance(t)?? throw new InvalidOperationException() ;;
-        return t;
-    }
+ 
 }
