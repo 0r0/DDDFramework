@@ -8,15 +8,16 @@ namespace MongoDBSynchronizer.Handlers;
 public class OrderEventHandlers : IEventHandler<OrderCreated>
 
 {
-    private readonly IMongoCollection<OrderDto> _mongoCollection;
+    private readonly IMongoDatabase _mongoDatabase;
 
-    public OrderEventHandlers(IMongoCollection<OrderDto> mongoCollection)
+    public OrderEventHandlers(IMongoDatabase mongoDatabase)
     {
-        _mongoCollection = mongoCollection;
+        _mongoDatabase = mongoDatabase;
     }
 
     public async Task Handle(OrderCreated @event)
     {
+        _mongoDatabase.GetCollection<OrderDto>("OrderDto");
         await Task.CompletedTask;
     }
 }

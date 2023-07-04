@@ -69,12 +69,11 @@ public class OrderModule : Module
         return client;
     }
 
-    private IMongoCollection<TDto> GetMongoClient<TDto>(IComponentContext context)
+    private IMongoDatabase GetMongoClient<TDto>(IComponentContext context)
     {
         Debug.Assert(_mongoDatabaseSettings != null, nameof(_mongoDatabaseSettings) + " != null");
         var client = new MongoClient(_mongoDatabaseSettings.Url);
-        return client.GetDatabase(_mongoDatabaseSettings.DatabaseName)
-            .GetCollection<TDto>(_mongoDatabaseSettings.CollectionName);
+        return client.GetDatabase(_mongoDatabaseSettings.DatabaseName);
     }
 
  
