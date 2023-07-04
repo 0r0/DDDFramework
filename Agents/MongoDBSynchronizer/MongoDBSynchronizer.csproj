@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Core\" />
+      <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
+      <ProjectReference Include="..\..\Domain\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
-      <ProjectReference Include="..\..\Domain\DDDFramework.Domain.Contracts\DDDFramework.Domain.Contracts.csproj" />
+      <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
     </ItemGroup>
 
 </Project>
