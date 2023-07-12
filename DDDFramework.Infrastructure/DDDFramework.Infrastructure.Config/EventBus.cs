@@ -16,7 +16,7 @@ public class EventBus :IEventBus
 
     public async Task Publish<T>(T @event) where T : DomainEvent
     {
-        var handler = _lifetimeScope.Resolve<IEventHandler<T>>() ?? throw new Exception("Hi life time scope has exception");
+        var handler = _lifetimeScope.Resolve<IEventHandler<T>>() ?? throw new Exception("Hi life time scope has exception of IEventHandler");
         await handler.Handle(@event);
     }
 }
