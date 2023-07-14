@@ -57,6 +57,8 @@ public class OrderModule : Module
         builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
             .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
         builder.Register(GetMongoClient<OrderDto>);
+       
+        builder.Register(a=>GetMongoClient<OrderDto>(a).GetCollection<OrderDto>("order"));
     }
 
     private EventStoreClient GetEventStoreClient(IComponentContext context)
