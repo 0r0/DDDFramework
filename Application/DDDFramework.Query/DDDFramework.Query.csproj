@@ -10,6 +10,7 @@
       <ProjectReference Include="..\..\Agents\MongoDBSynchronizer\MongoDBSynchronizer.csproj" />
       <ProjectReference Include="..\..\Core\DDDFramework.Core.Application.Contracts\DDDFramework.Core.Application.Contracts.csproj" />
       <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
+      <ProjectReference Include="..\DDDFramework.Query.Contracts\DDDFramework.Query.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>
