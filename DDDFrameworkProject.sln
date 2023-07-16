@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agents", "Agents", "{6ECF4B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDBSynchronizer", "Agents\MongoDBSynchronizer\MongoDBSynchronizer.csproj", "{3128164B-CC1A-4A16-8D45-FBFB018A6925}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDFramework.Query.Contracts", "Application\DDDFramework.Query.Contracts\DDDFramework.Query.Contracts.csproj", "{61B8753D-46A7-4B05-B755-34532DE2E7CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,7 @@ Global
 		{6722CBCE-4CDD-49BA-AF21-CBE0C5C45DBB} = {6B4408D7-F80A-49AD-B559-53E5942E7904}
 		{6ECF4BBD-2FF9-477D-838A-3FF5D594E625} = {EE8414F4-E304-4E17-B24E-9C09137C24C1}
 		{3128164B-CC1A-4A16-8D45-FBFB018A6925} = {6ECF4BBD-2FF9-477D-838A-3FF5D594E625}
+		{61B8753D-46A7-4B05-B755-34532DE2E7CB} = {6B4408D7-F80A-49AD-B559-53E5942E7904}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E36650A4-15F7-4E38-A995-0C76DF6D50B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -140,5 +143,9 @@ Global
 		{3128164B-CC1A-4A16-8D45-FBFB018A6925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3128164B-CC1A-4A16-8D45-FBFB018A6925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3128164B-CC1A-4A16-8D45-FBFB018A6925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B8753D-46A7-4B05-B755-34532DE2E7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B8753D-46A7-4B05-B755-34532DE2E7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B8753D-46A7-4B05-B755-34532DE2E7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B8753D-46A7-4B05-B755-34532DE2E7CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
