@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace DDDFramework.Tests.Filter;
+namespace DDDFramework.Core.Filter;
 
 public interface ICondition
 {

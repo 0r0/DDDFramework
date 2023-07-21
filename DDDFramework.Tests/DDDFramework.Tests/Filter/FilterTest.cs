@@ -1,4 +1,5 @@
-﻿using FluentAssertions.Json;
+﻿using DDDFramework.Core.Filter;
+using FluentAssertions.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DDDFramework.Tests.Filter;
@@ -10,7 +11,7 @@ public class FilterTest
    {
       var condition = new GreaterThanCondition("greaterThan", 40);
       var operation = new GreaterThanOperation("greaterThan");
-      var filter = new Filter(condition,operation);
+      var filter = new Core.Filter.Filter(condition,operation);
       const string jsonString = @"{'greaterThan':100}";
       var expected = JObject.Parse(jsonString);
 
