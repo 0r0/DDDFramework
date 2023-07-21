@@ -1,19 +1,19 @@
-﻿using DDDFramework.Core.Filter;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
-namespace DDDFramework.Tests.BuilderFactory;
+namespace DDDFramework.Core.Filter;
 
 public class AbsentCondition : ICondition
 {
-    private readonly string _key;
+    public string PropertyName { get; }
 
-    public AbsentCondition(string key)
+    public AbsentCondition(string propertyName)
     {
-        _key = key;
+        PropertyName = propertyName;
     }
+
 
     public bool IsSatisfied(JObject jObject)
     {
-        return jObject[_key] is  null; 
+        return jObject[PropertyName] is null;
     }
 }
