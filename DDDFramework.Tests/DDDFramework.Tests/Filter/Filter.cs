@@ -6,7 +6,7 @@ public class Filter : IFilter
 {
     private readonly ICondition _condition;
     private readonly IOperation _operation;
-    private  IFilter? _nextFilter;
+    private  IFilter _nextFilter= NullFilter.Instance;
 
     public Filter(ICondition condition, IOperation operation)
     {
@@ -24,6 +24,6 @@ public class Filter : IFilter
         if (_condition.IsSatisfied(jObject: jObject))
             _operation.Apply(jObject: jObject);
         
-        return _nextFilter is null ? jObject : _nextFilter.Apply(jObject);
+        return _nextFilter.Apply(jObject);
     }
 }
