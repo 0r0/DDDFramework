@@ -4,17 +4,18 @@ namespace DDDFramework.Core.Filter;
 
 public class GreaterThanCondition : ICondition
 {
-    private readonly string _key;
+    public string PropertyName { get; }
     private readonly long _greaterThan;
 
-    public GreaterThanCondition(string key, long greaterThan)
+    public GreaterThanCondition(string propertyName, long greaterThan)
     {
-        _key = key;
+        PropertyName = propertyName;
         _greaterThan = greaterThan;
     }
 
+
     public bool IsSatisfied(JObject jObject)
     {
-        return (jObject[_key] ?? throw new InvalidOperationException()).Value<long>() > _greaterThan;
+        return (jObject[PropertyName] ?? throw new InvalidOperationException()).Value<long>() > _greaterThan;
     }
 }

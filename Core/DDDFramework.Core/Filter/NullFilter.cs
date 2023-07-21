@@ -10,5 +10,9 @@ public class NullFilter :IFilter
         return jObject;
     }
 
+    public void SetFilter(IFilter filter)
+    {
+    }
+
     public static IFilter Instance => _instance ?? new NullFilter();
 }
