@@ -36,8 +36,4 @@
         <ProjectReference Include="..\..\Domain\DDDFramework.Domain\DDDFramework.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="BuilderFactory\" />
-    </ItemGroup>
-
 </Project>
