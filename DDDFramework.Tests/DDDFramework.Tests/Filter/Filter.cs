@@ -24,6 +24,6 @@ public class Filter : IFilter
         if (_condition.IsSatisfied(jObject: jObject))
             _operation.Apply(jObject: jObject);
         
-        return jObject;
+        return _nextFilter is null ? jObject : _nextFilter.Apply(jObject);
     }
 }
