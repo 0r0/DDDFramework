@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace DDDFramework.Tests.Filter;
+namespace DDDFramework.Core.Filter;
 
-public interface IFilter
+public interface IOperation
 {
     JObject Apply(JObject jObject);
 }

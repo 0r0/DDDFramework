@@ -28,6 +28,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Aggregate\Aggregate.csproj" />
         <ProjectReference Include="..\..\Application\DDDFramework.Application\DDDFramework.Application.csproj" />
+        <ProjectReference Include="..\..\Core\DDDFramework.Core\DDDFramework.Core.csproj" />
         <ProjectReference Include="..\..\DDDFramework.Application.Contracts\DDDFramework.Application.Contracts.csproj" />
         <ProjectReference Include="..\..\DDDFramework.Infrastructure\DDDFramework.Infrastructure.Config\DDDFramework.Infrastructure.Config.csproj" />
         <ProjectReference Include="..\..\DDDFramework.Infrastructure\Persistence.ES\Persistence.ES.csproj" />
