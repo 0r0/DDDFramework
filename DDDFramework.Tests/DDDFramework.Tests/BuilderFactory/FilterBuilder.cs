@@ -1,18 +1,16 @@
 ﻿using DDDFramework.Core.Filter;
-using Newtonsoft.Json.Linq;
 
 namespace DDDFramework.Tests.BuilderFactory;
 
 public class FilterBuilder : IFilterConditionBuilder, IFilterOperationBuilder
 {
     private ICondition _currentCondition;
-    private JObject _jObject;
-    
+
     public string PropertyName { get; set; }
     private readonly List<IFilter> Filters = new List<IFilter>();
-    public FilterBuilder(JObject jObject)
+    public FilterBuilder()
     {
-        _jObject = jObject;
+       
     }
 
 
@@ -69,6 +67,6 @@ public class FilterBuilder : IFilterConditionBuilder, IFilterOperationBuilder
             Filters[i].SetFilter(Filters[i - 1]);
         }
 
-        return Filters.First();
+        return Filters.Last();
     }
 }
