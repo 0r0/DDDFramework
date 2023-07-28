@@ -1,7 +1,9 @@
-﻿using DDDFramework.Core.Filter;
-using DDDFramework.Tests.BuilderFactory;
+﻿using DDDFramework.Domain.Contracts.Order;
+using DDDFramework.Tests.SchemaMapping;
 using FluentAssertions.Json;
 using Newtonsoft.Json.Linq;
+using Persistence.ES.Mapping.BuilderFactory;
+using Persistence.ES.Mapping.Filter;
 
 namespace DDDFramework.Tests.Filter;
 
@@ -12,7 +14,7 @@ public class FilterTest
     {
         var condition = new GreaterThanCondition("greaterThan", 40);
         var operation = new GreaterThanOperation("greaterThan");
-        var filter = new Core.Filter.Filter(condition, operation);
+        var filter = new Persistence.ES.Mapping.Filter.Filter(condition, operation);
         const string jsonString = @"{'greaterThan':100}";
         var expected = JObject.Parse(jsonString);
 
@@ -27,7 +29,7 @@ public class FilterTest
         var expected = @"{'id':'01','name':'Mehdi Goharinezhad'}";
         var absentCondition = new AbsentCondition("name");
         var anotherValueOperation = new AnotherPropertyOperation("name", "fullName");
-        var filter = new Core.Filter.Filter(absentCondition, anotherValueOperation);
+        var filter = new Persistence.ES.Mapping.Filter.Filter(absentCondition, anotherValueOperation);
         var actual = filter.Apply(JObject.Parse(jsonString));
         actual.Should().BeEquivalentTo(JObject.Parse(expected));
     }
@@ -40,10 +42,19 @@ public class FilterTest
         var expectedString = @"{'name':'Mehdi Goharinezhad','description':'default description'}";
         var expectedJson = JObject.Parse(expectedString);
         var filterFactory = new FilterBuilder();
-        var firstFilter = filterFactory.WhenAbsent("name").AnotherProperty("name", "fullName")
+        var filter = new InlineSchemaMapping<OrderCreated>(a=>a.WhenAbsent("name")
+            .AnotherProperty("name", "fullName")
             .WhenAbsent("description")
-            .DefaultValue("description", "default description").Build();
-        var actual = firstFilter.Apply(jsonJObject);
+            .DefaultValue("description", "default description"));
+        
+        var actual = filter.CreateFilter().Apply(jsonJObject);
         actual.Should().BeEquivalentTo(expectedJson);
+    }
+
+    [Fact]
+    public void add_schema_mapping_that_use_filter_factory_to_apply_mapping()
+    {
+        var domainEvent = new OrderCreated(new OrderId(Guid.NewGuid()), 10, "test order", true);
+        // var schemaMapping = new SchemaMapping<OrderCreated>();
     }
 }

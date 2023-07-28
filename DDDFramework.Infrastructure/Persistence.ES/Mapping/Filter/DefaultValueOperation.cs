@@ -1,7 +1,6 @@
-﻿using DDDFramework.Core.Filter;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
-namespace DDDFramework.Tests.BuilderFactory;
+namespace Persistence.ES.Mapping.Filter;
 
 public class DefaultValueOperation :IOperation
 {

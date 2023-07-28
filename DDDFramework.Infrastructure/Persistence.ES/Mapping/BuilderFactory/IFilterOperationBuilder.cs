@@ -1,4 +1,4 @@
-﻿namespace DDDFramework.Tests.BuilderFactory;
+﻿namespace Persistence.ES.Mapping.BuilderFactory;
 
 public interface IFilterOperationBuilder
 {

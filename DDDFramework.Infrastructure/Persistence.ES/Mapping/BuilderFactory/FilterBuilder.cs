@@ -1,8 +1,8 @@
-﻿using DDDFramework.Core.Filter;
+﻿using Persistence.ES.Mapping.Filter;
 
-namespace DDDFramework.Tests.BuilderFactory;
+namespace Persistence.ES.Mapping.BuilderFactory;
 
-public class FilterBuilder : IFilterConditionBuilder, IFilterOperationBuilder
+public class FilterBuilder : IFilterBuilder, IFilterOperationBuilder
 {
     private ICondition _currentCondition;
 
@@ -55,7 +55,7 @@ public class FilterBuilder : IFilterConditionBuilder, IFilterOperationBuilder
 
     private IFilterConditionBuilder AddFilter(IOperation operation)
     {
-        Filters.Add(new Core.Filter.Filter(_currentCondition, operation));
+        Filters.Add(new Filter.Filter(_currentCondition, operation));
         return this;
     }
 
