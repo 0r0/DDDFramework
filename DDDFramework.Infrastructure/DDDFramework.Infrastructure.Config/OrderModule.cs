@@ -8,11 +8,11 @@ using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.EventStore;
 using DDDFramework.Domain.Order;
 using DDDFramework.Infrastructure.Config.SettingModels;
+using DDDFramework.Query.Contracts;
 using DDDFramework.Query.Services;
 using EventStore.Client;
 using MongoDB.Driver;
 using MongoDBSynchronizer.Handlers;
-using MongoDBSynchronizer.MongoDtos;
 using Persistence.ES;
 
 namespace DDDFramework.Infrastructure.Config;

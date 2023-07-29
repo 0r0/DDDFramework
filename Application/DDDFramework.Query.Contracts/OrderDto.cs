@@ -1,4 +1,4 @@
-namespace MongoDBSynchronizer.MongoDtos;
+namespace DDDFramework.Query.Contracts;
 
 public class OrderDto 
 {

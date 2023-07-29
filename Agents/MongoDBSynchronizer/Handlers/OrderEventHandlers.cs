@@ -1,7 +1,7 @@
 ﻿using DDDFramework.Core.Application.Contracts;
 using DDDFramework.Domain.Contracts.Order;
+using DDDFramework.Query.Contracts;
 using MongoDB.Driver;
-using MongoDBSynchronizer.MongoDtos;
 
 namespace MongoDBSynchronizer.Handlers;
 

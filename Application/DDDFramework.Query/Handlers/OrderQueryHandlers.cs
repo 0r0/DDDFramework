@@ -1,8 +1,8 @@
 using DDDFramework.Core.Application.Contracts;
+using DDDFramework.Query.Contracts;
 using DDDFramework.Query.Requests;
 using DDDFramework.Query.Responses;
 using MongoDB.Driver;
-using MongoDBSynchronizer.MongoDtos;
 
 namespace DDDFramework.Query.Handlers;
 
