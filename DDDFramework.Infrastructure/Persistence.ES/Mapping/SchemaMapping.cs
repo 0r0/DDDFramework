@@ -4,7 +4,7 @@ using Persistence.ES.Mapping.Filter;
 
 namespace Persistence.ES.Mapping;
 
-public abstract class SchemaMapping<T> where T : DomainEvent
+public abstract class SchemaMapping<T> : ISchemaMapping where T : DomainEvent
 {
     public IFilter CreateFilter()
     {
@@ -14,10 +14,7 @@ public abstract class SchemaMapping<T> where T : DomainEvent
     }
 
     protected abstract void Configure(IFilterBuilder builder);
-    // {
-    //     builder.WhenAbsent("name").AnotherProperty("name", "fullName")
-    //         .WhenAbsent("description").DefaultValue("description", "default description");
-    // }
+
 
     private FilterBuilder CreateFilterBuilder()
     {
