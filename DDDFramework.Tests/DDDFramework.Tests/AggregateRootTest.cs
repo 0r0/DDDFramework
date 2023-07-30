@@ -17,7 +17,7 @@ public class AggregateRootTest
     }
 
     [Fact]
-    public void AggregateRoot_can_save_unCommitedEvent()
+    public void AggregateRoot_can_save_unCommittedEvent()
     {
         var orderCreatedDomainEvent = new OrderCreated()
         {
