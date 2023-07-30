@@ -7,9 +7,9 @@ namespace DDDFramework.Tests;
     public class IoCSupportedTest<TModule> where TModule : IModule, new() 
     
     {
-        private IContainer _container;
+        private readonly IContainer _container;
 
-        public IoCSupportedTest(object?[]? config)
+        protected IoCSupportedTest(object?[]? config)
         {
             var builder = new ContainerBuilder();
            
