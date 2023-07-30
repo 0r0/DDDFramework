@@ -1,4 +1,4 @@
-﻿namespace DDDFramework.Core.Filter;
+﻿namespace Persistence.ES.Mapping.Filter;
 
 public class MappingErrorException : Exception
 {

@@ -1,4 +1,4 @@
-﻿namespace DDDFramework.Infrastructure.Config;
+﻿namespace DDDFramework.Infrastructure.Config.SettingModels;
 
 public class EventStoreSettings
 {
