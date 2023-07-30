@@ -3,6 +3,7 @@ using Autofac;
 using DDDFramework.Application.Handlers;
 using DDDFramework.Application.Order;
 using DDDFramework.Core.Application.Contracts;
+using DDDFramework.Core.CursorManager;
 using DDDFramework.Domain;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.EventStore;
@@ -57,8 +58,9 @@ public class OrderModule : Module
         builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
             .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
         builder.Register(GetMongoClient<OrderDto>);
-       
-        builder.Register(a=>GetMongoClient<OrderDto>(a).GetCollection<OrderDto>("order"));
+
+        builder.Register(a => GetMongoClient<OrderDto>(a).GetCollection<OrderDto>("order"));
+        builder.RegisterGenericDecorator(typeof(CursorGenericEventHandlerDecorator<>), typeof(IEventHandler<>));
     }
 
     private EventStoreClient GetEventStoreClient(IComponentContext context)
@@ -77,6 +79,4 @@ public class OrderModule : Module
         var client = new MongoClient(_mongoDatabaseSettings.Url);
         return client.GetDatabase(_mongoDatabaseSettings.DatabaseName);
     }
-
- 
 }
