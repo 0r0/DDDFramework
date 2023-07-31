@@ -4,14 +4,14 @@ namespace DDDFramework.Core.CursorManager;
 
 public class Cursor : ICursor
 {
-    public Position Position { get; private set; } = Position.Start;
+    public StreamPosition Position { get; private set; } = StreamPosition.Start;
 
-    public Position CurrentCursor()
+    public StreamPosition CurrentCursor()
     {
         return Position;
     }
 
-    public void SetPosition(Position position)
+    public void SetPosition(StreamPosition position)
     {
         Position = position;
     }

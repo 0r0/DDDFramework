@@ -4,6 +4,8 @@ namespace DDDFramework.Core.CursorManager;
 
 public interface ICursor
 {
-    Position Position { get; }
-    Position CurrentCursor();
+    StreamPosition Position { get; }
+    StreamPosition CurrentCursor();
+    public void SetPosition(StreamPosition position);
+
 }

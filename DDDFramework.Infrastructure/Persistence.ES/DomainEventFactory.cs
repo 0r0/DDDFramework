@@ -6,7 +6,7 @@ using Persistence.ES.Mapping;
 
 namespace Persistence.ES;
 
-internal static class DomainEventFactory
+public static class DomainEventFactory
 {
     public static IReadOnlyCollection<DomainEvent> Create(IReadOnlyCollection<ResolvedEvent> resolvedEvents,
         IEventTypeResolver resolver)
