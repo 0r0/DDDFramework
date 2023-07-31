@@ -29,7 +29,6 @@ public class OrderModule : Module
             NullReferenceException("event store connection string can not be null");
         _mongoDatabaseSettings = mongoDatabaseSettings ?? throw new
             NullReferenceException("mongodb connection string can not be null");
-        ;
     }
 
     public OrderModule()
@@ -57,15 +56,16 @@ public class OrderModule : Module
             .InstancePerLifetimeScope();
         builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
             .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
-        builder.Register(GetMongoClient<OrderDto>);
+        builder.Register(GetMongoClient);
 
-        builder.Register(a => GetMongoClient<OrderDto>(a).GetCollection<OrderDto>("order"));
+        builder.Register(a => GetMongoClient(a).GetCollection<OrderDto>("order"));
         builder.RegisterGenericDecorator(typeof(CursorGenericEventHandlerDecorator<>), typeof(IEventHandler<>));
     }
 
     private EventStoreClient GetEventStoreClient(IComponentContext context)
     {
         Debug.Assert(_eventStoreSettings != null, nameof(_eventStoreSettings) + " != null");
+        Debug.Assert(_eventStoreSettings.Url != null, "_eventStoreSettings.Url != null");
         var settings = EventStoreClientSettings
             .Create(_eventStoreSettings.Url);
 
@@ -73,7 +73,7 @@ public class OrderModule : Module
         return client;
     }
 
-    private IMongoDatabase GetMongoClient<TDto>(IComponentContext context)
+    private IMongoDatabase GetMongoClient(IComponentContext context)
     {
         Debug.Assert(_mongoDatabaseSettings != null, nameof(_mongoDatabaseSettings) + " != null");
         var client = new MongoClient(_mongoDatabaseSettings.Url);
