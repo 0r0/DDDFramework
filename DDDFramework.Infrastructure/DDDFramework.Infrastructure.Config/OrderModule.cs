@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
+using Aggregate.AggregateRootFactory;
 using Autofac;
 using DDDFramework.Application.Handlers;
 using DDDFramework.Application.Order;
 using DDDFramework.Core.Application.Contracts;
 using DDDFramework.Core.CursorManager;
-using DDDFramework.Domain;
 using DDDFramework.Domain.Contracts.Order;
 using DDDFramework.Domain.EventStore;
 using DDDFramework.Domain.Order;

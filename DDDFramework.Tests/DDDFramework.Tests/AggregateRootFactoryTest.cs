@@ -1,4 +1,5 @@
 ﻿using Aggregate;
+using Aggregate.AggregateRootFactory;
 using DDDFramework.Application;
 using DDDFramework.Domain;
 using DDDFramework.Domain.Contracts.Order;

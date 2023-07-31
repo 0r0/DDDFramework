@@ -1,6 +1,5 @@
-﻿using Aggregate;
+﻿namespace Aggregate.AggregateRootFactory;
 
-namespace DDDFramework.Domain;
 /// <summary>
 /// stream events convention {aggregateType}-{aggregateId}
 /// </summary>

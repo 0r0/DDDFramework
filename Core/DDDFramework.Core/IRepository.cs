@@ -1,4 +1,4 @@
-namespace DDDFramework.Domain;
+namespace DDDFramework.Core;
 /// <summary>
 /// repository remark interface
 /// </summary>
