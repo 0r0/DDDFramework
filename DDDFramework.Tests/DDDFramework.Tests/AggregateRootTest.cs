@@ -17,7 +17,7 @@ public class AggregateRootTest
     }
 
     [Fact]
-    public void AggregateRoot_can_save_unCommitedEvent()
+    public void AggregateRoot_can_save_unCommittedEvent()
     {
         var orderCreatedDomainEvent = new OrderCreated()
         {
@@ -33,7 +33,7 @@ public class AggregateRootTest
 
     // unit test for remove _uncommitted event;
     [Fact]
-    public void AggregateRoot_can_remove_unCommitedEvent()
+    public void AggregateRoot_can_remove_unCommittedEvent()
     {
         var orderCreatedDomainEvent = new OrderCreated()
         {

@@ -1,3 +1,4 @@
+using DDDFramework.Core;
 using DDDFramework.Domain.Contracts.Order;
 
 namespace DDDFramework.Domain.Order;

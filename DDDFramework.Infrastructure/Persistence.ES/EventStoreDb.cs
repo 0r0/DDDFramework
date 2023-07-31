@@ -11,7 +11,6 @@ public class EventStoreDb : IEventStore
 
     public EventStoreDb(EventStoreClient client, IEventTypeResolver eventTypeResolver)
     {
-        // var setting = EventStoreClientSettings.Create("esdb://admin:changeit@localhost:2113?tls=false");
         _client = client;
         _eventTypeResolver = eventTypeResolver;
     }

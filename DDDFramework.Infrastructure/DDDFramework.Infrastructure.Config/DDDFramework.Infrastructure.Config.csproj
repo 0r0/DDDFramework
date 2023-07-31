@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="7.0.1" />
-      <PackageReference Include="EventStore.Client.Grpc.Streams" Version="21.2.0" />
+      <PackageReference Include="EventStore.Client.Grpc.Streams" Version="23.0.0" />
       <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
     </ItemGroup>
 

@@ -39,6 +39,6 @@ public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot
     public void ApplyAndPublish(DomainEvent @event)
     {
         _uncommittedEvent.Add(@event);
-        this.Apply(@event);
+        Apply(@event);
     }
 }

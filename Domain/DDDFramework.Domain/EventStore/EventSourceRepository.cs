@@ -1,4 +1,5 @@
 ﻿using Aggregate;
+using Aggregate.AggregateRootFactory;
 
 namespace DDDFramework.Domain.EventStore;
 
