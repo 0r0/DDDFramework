@@ -42,6 +42,9 @@ public class OrderModule : Module
         builder.RegisterGeneric(typeof(EventSourceRepository<,>)).As(typeof(IEventSourceRepository<,>))
             .SingleInstance();
         builder.RegisterType<CommandBus>().As<ICommandBus>().SingleInstance();
+        builder.RegisterType<QueryBus>().As<IQueryBus>().SingleInstance();
+        builder.RegisterType<EventBus>().As<IEventBus>().SingleInstance();
+        builder.RegisterType<Cursor>().As<ICursor>().SingleInstance();
         builder.RegisterType<OrderArgFactory>().As<IOrderArgFactory>().SingleInstance();
         builder.RegisterType<OrderRepository>().As<IOrderRepository>().SingleInstance();
         builder.RegisterType<OrderService>().As<IOrderService>().SingleInstance();
