@@ -19,11 +19,11 @@ builder.Services.AddQuartzService();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
-builder.Services.AddHealthChecksUI(setupSettings: setup =>
-{
-    setup.SetEvaluationTimeInSeconds(5);
-    setup.AddHealthCheckEndpoint("infrastructure", "https://localhost:7257/healthz");
-}).AddInMemoryStorage();
+// builder.Services.AddHealthChecksUI(setupSettings: setup =>
+// {
+//     setup.SetEvaluationTimeInSeconds(5);
+//     setup.AddHealthCheckEndpoint("infrastructure", "https://localhost:7257/healthz");
+// }).AddInMemoryStorage();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 var eventStoreSettings = new EventStoreSettings();
 var mongoDbSettings = new MongoDbSettings();
@@ -39,7 +39,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(autofacBuilder =>
 
 Debug.Assert(eventStoreSettings.Url != null, "eventStoreSettings.Url != null");
 Debug.Assert(mongoDbSettings.Url != null, "mongoDbSettings.Url != null");
-builder.Services.AddHealthChecks().AddEventStore(eventStoreSettings.Url).AddMongoHealthCheck(mongoDbSettings.Url);
+// builder.Services.AddHealthChecks().AddEventStore(eventStoreSettings.Url);
+    // .AddMongoHealthCheck(mongoDbSettings.Url);
 
 var app = builder.Build();
 
@@ -57,16 +58,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 // /healthchecks-ui address
-app
-    .UseRouting()
-    .UseEndpoints(config =>
-    {
-        config.MapHealthChecks("/healthz", new HealthCheckOptions
-        {
-            Predicate = _ => true,
-            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-        });
-        config.MapHealthChecksUI(setup => { setup.AddCustomStylesheet("styles/dotnet.css"); });
-    });
+// app
+//     .UseRouting()
+//     .UseEndpoints(config =>
+//     {
+//         config.MapHealthChecks("/healthz", new HealthCheckOptions
+//         {
+//             Predicate = _ => true,
+//             ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+//         });
+//         config.MapHealthChecksUI(setup => { setup.AddCustomStylesheet("styles/dotnet.css"); });
+//     });
 
 app.Run();
