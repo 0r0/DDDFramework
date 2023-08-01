@@ -1,4 +1,5 @@
-﻿using Aggregate;
+﻿using System.Text;
+using Aggregate;
 using EventStore.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -17,9 +18,10 @@ public static class DomainEventFactory
     public static DomainEvent Create(ResolvedEvent resolvedEvent, IEventTypeResolver resolver)
     {
         var type = resolver.GetType(resolvedEvent.Event.EventType);
-
-        var body = ApplyMapping(resolvedEvent.Event.Data.ToString(), type);
-        return JsonConvert.DeserializeObject<DomainEvent>(body) ?? throw new InvalidOperationException();
+        var b = Encoding.UTF8.GetString(resolvedEvent.OriginalEvent.Data.ToArray());
+        var body = ApplyMapping(b, type);
+        var domainEvent = JsonConvert.DeserializeObject(body,type) as DomainEvent;
+        return  domainEvent ?? throw new InvalidOperationException();
     }
 
     private static string ApplyMapping(string body, Type type)

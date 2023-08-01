@@ -29,14 +29,21 @@ public class EventStoreRetrievalJobScheduler : IJob
 
     public async Task Execute(IJobExecutionContext context)
     {
-        
         var cursorPosition = _cursor.CurrentCursor();
-        await _client.SubscribeToAllAsync( FromAll.Start,
-            async (subscription, @event, cancellationToken) =>
-            {
-                Console.WriteLine($"quot;Received event {@event.OriginalEventNumber}@{@event.OriginalStreamId}");
-                
-                await _eventBus.Publish(DomainEventFactory.Create(@event, _eventTypeResolver));
-            });
+        await _client
+            .SubscribeToStreamAsync("Order-DDDFramework.Domain.Contracts.Order.OrderId", FromStream.Start,
+                EventAppeared).ConfigureAwait(false);
+    }
+
+    private async Task EventAppeared(StreamSubscription subscription, ResolvedEvent resolvedEvent,
+        CancellationToken cancellationToken)
+    {
+        if (!resolvedEvent.OriginalEvent.EventType.StartsWith("$"))
+        {
+            Console.WriteLine(
+                $"quot;Received event {resolvedEvent.OriginalEventNumber}@{resolvedEvent.OriginalStreamId}");
+            var domainEvent = DomainEventFactory.Create(resolvedEvent, _eventTypeResolver);
+            await _eventBus.Publish(domainEvent);
+        }
     }
 }
