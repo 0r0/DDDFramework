@@ -4,7 +4,6 @@ namespace Persistence.ES.Mapping.Filter;
 
 public class NullFilter :IFilter
 {
-    private static IFilter? _instance;
     public JObject Apply(JObject jObject)
     {
         return jObject;
@@ -14,5 +13,5 @@ public class NullFilter :IFilter
     {
     }
 
-    public static IFilter Instance => _instance ?? new NullFilter();
+    public static IFilter Instance =>  new NullFilter();
 }
