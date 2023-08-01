@@ -14,7 +14,8 @@ public class CommandBus : ICommandBus
 
     public void Dispatch<T>(T command)
     {
-        var handler = _lifetimeScope.Resolve<ICommandHandler<T>>();
+        using var scope = _lifetimeScope.BeginLifetimeScope();
+        var handler = scope.Resolve<ICommandHandler<T>>();
         handler.Handle(command);
     }
 }

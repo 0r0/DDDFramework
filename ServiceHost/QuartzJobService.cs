@@ -13,7 +13,7 @@ public static class QuartzJobService
             configure.AddJob<EventStoreRetrievalJobScheduler>(jobKey)
                 .AddTrigger(trigger =>
                     trigger.ForJob(jobKey)
-                        .WithSimpleSchedule(schedule => schedule.WithIntervalInSeconds(5).RepeatForever()));
+                        .WithSimpleSchedule(schedule => schedule.WithIntervalInSeconds(100).RepeatForever()));
             configure.UseMicrosoftDependencyInjectionJobFactory();
         });
         serviceCollection.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);

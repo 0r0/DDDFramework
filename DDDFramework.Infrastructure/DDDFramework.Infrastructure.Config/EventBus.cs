@@ -12,11 +12,13 @@ public class EventBus :IEventBus
     public EventBus(ILifetimeScope lifetimeScope)
     {
         _lifetimeScope = lifetimeScope;
+       
     }
 
-    public async Task Publish<T>(T @event) where T : DomainEvent
+    public async Task Publish<T>(T @event) where T : IEvent
     {
-        var handler = _lifetimeScope.Resolve<IEventHandler<T>>() ?? throw new Exception("Hi life time scope has exception of IEventHandler");
+        using var scope = _lifetimeScope.BeginLifetimeScope();
+        var handler = scope.Resolve<IEventHandler<T>>();
         await handler.Handle(@event);
     }
 }

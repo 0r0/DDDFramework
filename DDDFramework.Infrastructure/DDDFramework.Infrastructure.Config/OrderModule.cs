@@ -38,13 +38,11 @@ public class OrderModule : Module
 
     protected override void Load(ContainerBuilder builder)
     {
-        base.Load(builder);
+       
         builder.RegisterGeneric(typeof(EventSourceRepository<,>)).As(typeof(IEventSourceRepository<,>))
             .SingleInstance();
-        builder.RegisterType<CommandBus>().As<ICommandBus>().SingleInstance();
-        builder.RegisterType<QueryBus>().As<IQueryBus>().SingleInstance();
-        builder.RegisterType<EventBus>().As<IEventBus>().SingleInstance();
-        builder.RegisterType<Cursor>().As<ICursor>().SingleInstance();
+        builder.RegisterType<CommandBus>().As<ICommandBus>().InstancePerLifetimeScope();
+        builder.RegisterType<QueryBus>().As<IQueryBus>().InstancePerLifetimeScope();
         builder.RegisterType<OrderArgFactory>().As<IOrderArgFactory>().SingleInstance();
         builder.RegisterType<OrderRepository>().As<IOrderRepository>().SingleInstance();
         builder.RegisterType<OrderService>().As<IOrderService>().SingleInstance();
@@ -52,17 +50,24 @@ public class OrderModule : Module
         builder.RegisterType<EventStoreDb>().As<IEventStore>().SingleInstance();
         builder.RegisterType<EventTypeResolver>().As<IEventTypeResolver>().SingleInstance().OnActivated(a =>
             a.Instance.AddTypesFromAssemblies(typeof(OrderCreated).Assembly));
+        
         builder.RegisterType<AggregateRootFactory>().As<IAggregateRootFactory>().SingleInstance();
+        
         builder.Register(GetEventStoreClient);
         builder.RegisterAssemblyTypes(typeof(OrderCommandHandlers).Assembly)
             .As(type => type.GetInterfaces().Where(t => t.IsClosedTypeOf(typeof(ICommandHandler<>))))
             .InstancePerLifetimeScope();
+        var eventHandlers = typeof(OrderEventHandlers).Assembly;
         builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
             .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
+  
+
         builder.Register(GetMongoClient);
 
         builder.Register(a => GetMongoClient(a).GetCollection<OrderDto>("order"));
         builder.RegisterGenericDecorator(typeof(CursorGenericEventHandlerDecorator<>), typeof(IEventHandler<>));
+        base.Load(builder);
+
     }
 
     private EventStoreClient GetEventStoreClient(IComponentContext context)

@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDFramework.Query.Contract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDFramework.Core", "Core\DDDFramework.Core\DDDFramework.Core.csproj", "{5D0083A9-883E-4B2C-A7FB-53278D41894E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDBProjection", "Agents\MongoDBProjection\MongoDBProjection.csproj", "{4294C872-FCEE-424E-A420-45DDCF545124}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,7 @@ Global
 		{3128164B-CC1A-4A16-8D45-FBFB018A6925} = {6ECF4BBD-2FF9-477D-838A-3FF5D594E625}
 		{61B8753D-46A7-4B05-B755-34532DE2E7CB} = {6B4408D7-F80A-49AD-B559-53E5942E7904}
 		{5D0083A9-883E-4B2C-A7FB-53278D41894E} = {EF601538-964C-4903-AD28-8C880648582E}
+		{4294C872-FCEE-424E-A420-45DDCF545124} = {6ECF4BBD-2FF9-477D-838A-3FF5D594E625}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E36650A4-15F7-4E38-A995-0C76DF6D50B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -154,5 +157,9 @@ Global
 		{5D0083A9-883E-4B2C-A7FB-53278D41894E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D0083A9-883E-4B2C-A7FB-53278D41894E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D0083A9-883E-4B2C-A7FB-53278D41894E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4294C872-FCEE-424E-A420-45DDCF545124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4294C872-FCEE-424E-A420-45DDCF545124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4294C872-FCEE-424E-A420-45DDCF545124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4294C872-FCEE-424E-A420-45DDCF545124}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
