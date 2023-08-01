@@ -9,7 +9,7 @@ public class OrderTestModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         base.Load(builder);
-        builder.RegisterAssemblyTypes(typeof(OrderEventHandlers).Assembly).As(type => type.GetInterfaces()
+        builder.RegisterAssemblyTypes(typeof(OrderEventHandlersTest).Assembly).As(type => type.GetInterfaces()
             .Where(a => a.IsClosedTypeOf(typeof(IEventHandler<>)))).InstancePerLifetimeScope();
     }
 }
