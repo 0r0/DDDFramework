@@ -29,12 +29,13 @@ public class EventStoreRetrievalJobScheduler : IJob
 
     public async Task Execute(IJobExecutionContext context)
     {
+        
         var cursorPosition = _cursor.CurrentCursor();
-         await _client.SubscribeToStreamAsync(_options.StreamName, FromStream.After(cursorPosition),
-            async (subscription, evnt, cancellationToken) =>
+        await _client.SubscribeToStreamAsync(_options.StreamName ?? throw new NullReferenceException($"{nameof(_options.StreamName)} can not be null"), FromStream.After(cursorPosition),
+            async (subscription, @event, cancellationToken) =>
             {
-            Console.WriteLine($"quot;Received event {evnt.OriginalEventNumber}@{evnt.OriginalStreamId}");
-                await _eventBus.Publish(DomainEventFactory.Create(evnt,_eventTypeResolver));
+                Console.WriteLine($"quot;Received event {@event.OriginalEventNumber}@{@event.OriginalStreamId}");
+                await _eventBus.Publish(DomainEventFactory.Create(@event, _eventTypeResolver));
             });
     }
 }
